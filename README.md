@@ -1,0 +1,2 @@
+# nuxt-ui
+nuxt ui
