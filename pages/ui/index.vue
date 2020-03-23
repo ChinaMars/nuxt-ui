@@ -17,6 +17,7 @@
         </ul>
       </mv-scrollbar>
     </div>
+    {{ addressModel }}
     <mv-select v-model="addressModel" placeholder="请选择">
       <mv-option
         v-for="(item, Itemindex) in address.region"

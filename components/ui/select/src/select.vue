@@ -57,7 +57,7 @@ export default {
       domDon: false,
       visible: false,
       readonly: true,
-      curValue: null
+      // curValue: null
     }
   },
   computed: {
@@ -73,19 +73,19 @@ export default {
     }
   },
   created () {
-    this.curValue = this.value
+    // this.curValue = this.value
     this.$on('handleOptionClick', this.handleOptionSelect)
   },
   methods: {
     toggleSelect () {
-      console.log('2222')
       this.visible = !this.visible
     },
     handleOptionSelect (option) {
-      // console.log(option)
+      console.log(option)
       if (this.visible) {
         this.toggleSelect()
       }
+      this.$emit('input', option.value)
     },
     handleClose () {
       this.visible = false
