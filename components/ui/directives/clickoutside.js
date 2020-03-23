@@ -44,9 +44,9 @@ function bind (el, binding) {
 
   // unbind any existing listeners first
   unbind(el)
-console.log(domListener, 'domListener======')
+  console.log(domListener, 'domListener======')
   if (!domListener) {
-    domListener = on(document.documentElement, 'click', event => {
+    domListener = on(document.documentElement, 'click', (event) => {
       console.log(event, 'event======')
       registeredHandlers.forEach(handler => handler.check(event))
     })
@@ -57,7 +57,6 @@ console.log(domListener, 'domListener======')
       modifiers.static ? staticStrategy(el, callback) : dynamicStrategy(el, callback)
     )
   }, 0)
-
 }
 
 function update (el, binding) {

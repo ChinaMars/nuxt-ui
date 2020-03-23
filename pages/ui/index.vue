@@ -134,9 +134,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .ui-guide{
+  .ui-guide {
     padding: 100px;
-    .scroll-text{
+
+    .scroll-text {
       height: 50px;
       overflow: hidden;
     }

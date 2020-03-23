@@ -11,31 +11,38 @@ export default {
 </script>
 
 <style lang="scss">
-  .mv-button-group{
+  .mv-button-group {
     display: inline-block;
-    .mv-button{
-      border: none;
-      border-left: 1px solid #FFFFFF;
+
+    .mv-button {
+      border: 0;
+      border-left: 1px solid #fff;
       float: left;
-      &:first-child{
-        border-top-right-radius: 0;
+
+      &:first-child {
+        border: 0;
         border-bottom-right-radius: 0;
-        border: none;
+        border-top-right-radius: 0;
       }
+
       &:last-child {
-        border-top-left-radius: 0;
         border-bottom-left-radius: 0;
-        border-left: 1px solid #FFFFFF;
+        border-left: 1px solid #fff;
+        border-top-left-radius: 0;
       }
-      &:not(:first-child):not(:last-child){
+
+      &:not(:first-child):not(:last-child) {
         border-radius: 0;
       }
     }
-    &:before,&:after{
+
+    &::before,
+    &::after {
+      content: '';
       display: table;
-      content: "";
     }
-    &:after{
+
+    &::after {
       clear: both;
     }
   }

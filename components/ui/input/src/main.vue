@@ -48,12 +48,12 @@ export default {
 </script>
 
 <style lang="scss">
-  .mv-input{
-    .mv-input-inner{
-      outline: none;
-      width: 100%;
+  .mv-input {
+    .mv-input-inner {
       height: 40px;
       line-height: 40px;
+      outline: none;
+      width: 100%;
     }
   }
 </style>

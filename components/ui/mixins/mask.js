@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { isClient } from '@/components/ui/utils/util'
+import { isServer } from '@/components/ui/utils/util'
 import MvMask from '@/components/ui/mask'
 
 export default {
@@ -13,7 +13,7 @@ export default {
   },
   methods: {
     createInstanceMask (options = {}) {
-      if (!isClient) { return }
+      if (!isServer) { return }
       const Instance = Vue.extend(MvMask)
       options = Object.assign({}, this.defaultOptions, options)
       this.handleOptions(options)

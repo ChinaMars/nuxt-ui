@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import main from './main.vue'
-import { isClient } from '@/components/ui/utils/util'
+import { isServer } from '@/components/ui/utils/util'
 
 const LoadingConstructor = Vue.extend(main)
 
@@ -9,7 +9,7 @@ const defaults = {
 }
 
 const Loading = (options = {}) => {
-  if (!isClient) { return }
+  if (!isServer) { return }
   options = Object.assign({}, defaults, options)
   const instance = new LoadingConstructor({
     data: options

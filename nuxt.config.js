@@ -1,4 +1,4 @@
-
+const StyleLintPlugin = require('stylelint-webpack-plugin')
 module.exports = {
   mode: 'universal',
   /*
@@ -36,8 +36,7 @@ module.exports = {
   /*
   ** Nuxt.js dev-modules
   */
-  buildModules: [
-  ],
+  buildModules: [],
   /*
   ** Nuxt.js modules
   */
@@ -76,6 +75,13 @@ module.exports = {
     ** You can extend webpack config here
     */
     extend (config, ctx) {
+      config.plugins.push(
+        new StyleLintPlugin({
+          files: ['/**/*.{vue,html,css,scss,sass,less}'],
+          cache: true,
+          fix: true
+        })
+      )
     }
   }
 }

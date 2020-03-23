@@ -25,16 +25,18 @@ export default {
 
 <style lang="scss">
   .mv-loading-overlay {
-    position: absolute;
+    height: 100%;
     left: 0;
+    position: absolute;
     top: 0;
     width: 100%;
-    height: 100%;
   }
+
   .mv-fade-enter,
   .mv-fade-leave-active {
     opacity: 0;
   }
+
   .mv-fade-enter-active,
   .mv-fade-leave-active {
     transition: opacity 0.5s;

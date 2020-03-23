@@ -1,7 +1,7 @@
 <template>
-  <div class="mv-select"
-    @click="toggleSelect"
-    v-clickoutside="handleClose"
+  <div v-clickoutside="handleClose"
+       class="mv-select"
+       @click="toggleSelect"
   >
     <div
       class="mv-select-input"
@@ -74,15 +74,18 @@ export default {
   },
   created () {
     this.curValue = this.value
-    console.log(this)
     this.$on('handleOptionClick', this.handleOptionSelect)
   },
   methods: {
     toggleSelect () {
+      console.log('2222')
       this.visible = !this.visible
     },
     handleOptionSelect (option) {
       // console.log(option)
+      if (this.visible) {
+        this.toggleSelect()
+      }
     },
     handleClose () {
       this.visible = false
@@ -95,33 +98,38 @@ export default {
 </script>
 
 <style lang="scss">
-  .mv-select{
-    width: 240px;
+  .mv-select {
     position: relative;
-    .mv-input-inner{
+    width: 240px;
+
+    .mv-input-inner {
       cursor: pointer;
     }
-    .mv-select-down{
-      padding: 10px 0;
-      background-color: #FFFFFF;
-      box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
+
+    .mv-select-down {
+      background-color: #fff;
+      box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
       height: 160px;
+      overflow: hidden;
+      padding: 10px 0;
       position: absolute;
       width: 100%;
-      overflow: hidden;
     }
   }
-  .mv-select-fade-down-leave-active{
-    animation: slideYOut .5s;
+
+  .mv-select-fade-down-leave-active {
+    animation: slideYOut 0.5s;
   }
-  .mv-select-fade-down-enter-active{
-    animation: slideYIn .5s;
+
+  .mv-select-fade-down-enter-active {
+    animation: slideYIn 0.5s;
   }
   @keyframes slideYIn {
     from {
       opacity: 0;
       transform: translateY(-15px);
     }
+
     to {
       opacity: 1;
     }
@@ -130,6 +138,7 @@ export default {
     from {
       opacity: 1;
     }
+
     to {
       opacity: 0;
       transform: translateY(-15px);

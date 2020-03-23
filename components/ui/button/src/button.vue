@@ -34,40 +34,42 @@ export default {
 </script>
 
 <style lang="scss">
-  .mv-button{
-    display: inline-block;
-    line-height: 1;
-    white-space: nowrap;
-    cursor: pointer;
+  .mv-button {
     background: #fff;
     border: 1px solid #dcdfe6;
-    color: #606266;
-    -webkit-appearance: none;
-    text-align: center;
+    border-radius: 4px;
     box-sizing: border-box;
-    outline: none;
-    margin: 0;
-    transition: .1s;
-    font-weight: 500;
-    -moz-user-select: none;
-    -webkit-user-select: none;
-    -ms-user-select: none;
-    padding: 12px 20px;
+    color: #606266;
+    cursor: pointer;
+    display: inline-block;
     font-size: 14px;
-    border-radius: 4px
+    font-weight: 500;
+    line-height: 1;
+    margin: 0;
+    outline: none;
+    padding: 12px 20px;
+    text-align: center;
+    transition: 0.1s;
+    user-select: none;
+    white-space: nowrap;
   }
-  .mv-button:focus, .mv-button:hover{
-    color: #FFFFFF;
+
+  .mv-button:focus,
+  .mv-button:hover {
+    background-color: #000;
     border-color: #c6e2ff;
-    background-color: #000000;
+    color: #fff;
   }
-  .mv-button-primary{
-    background-color: #000000;
-    color: #FFFFFF
+
+  .mv-button-primary {
+    background-color: #000;
+    color: #fff;
   }
-  .mv-button-primary:focus, .mv-button-primary:hover{
-    color: #FFFFFF;
-    border-color: #c6e2ff;
+
+  .mv-button-primary:focus,
+  .mv-button-primary:hover {
     background-color: #4b4b4b;
+    border-color: #c6e2ff;
+    color: #fff;
   }
 </style>

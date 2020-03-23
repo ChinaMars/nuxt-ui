@@ -8,6 +8,7 @@
 import BScroll from '@better-scroll/core'
 import ScrollBar from '@better-scroll/scroll-bar'
 import MouseWheel from '@better-scroll/mouse-wheel'
+import { isMobile } from 'mobile-device-detect'
 BScroll.use(MouseWheel)
 BScroll.use(ScrollBar)
 export default {
@@ -27,7 +28,7 @@ export default {
           interactive: true
         },
         mouseWheel: true,
-        disableMouse: false
+        disableMouse: !isMobile
       }
     }
   },
@@ -42,6 +43,9 @@ export default {
       }
     }
   },
+  created () {
+    console.log(isMobile)
+  },
   mounted () {
     this.$nextTick(() => {
       new BScroll(this.$refs.scrollbar, this.options)
@@ -51,9 +55,9 @@ export default {
 </script>
 
 <style lang="scss">
-  .mv-scrollbar{
-    position: relative;
+  .mv-scrollbar {
     height: 100%;
     overflow: hidden;
+    position: relative;
   }
 </style>

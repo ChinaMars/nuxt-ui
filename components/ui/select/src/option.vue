@@ -1,7 +1,7 @@
 <template>
   <li
     class="mv-option"
-    @click="optionClick"
+    @click.stop="optionClick"
   >
     <slot>
       <span>{{ label }}</span>
@@ -37,13 +37,13 @@ export default {
 </script>
 
 <style lang="scss">
-  .mv-option-wrap{
-    .mv-option{
+  .mv-option-wrap {
+    .mv-option {
       cursor: pointer;
       font-size: 14px;
-      padding: 0 20px;
       height: 34px;
       line-height: 34px;
+      padding: 0 20px;
     }
   }
 </style>
