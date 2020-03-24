@@ -47,9 +47,11 @@ export default {
     console.log(isMobile)
   },
   mounted () {
-    this.$nextTick(() => {
-      new BScroll(this.$refs.scrollbar, this.options)
-    })
+    if (this.complete) {
+      this.$nextTick(() => {
+        new BScroll(this.$refs.scrollbar, this.options)
+      })
+    }
   }
 }
 </script>

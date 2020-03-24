@@ -1,7 +1,7 @@
 <template>
-  <div class="mv-popup">
-    <div class="mv-popup-container" :class="positionClass" :style="{width: width}">
-      <div class="mv-popup-content">
+  <div class="mv-drawer">
+    <div class="mv-drawer-container" :class="positionClass" :style="{width: width}">
+      <div class="mv-drawer-content">
         <slot></slot>
       </div>
     </div>
@@ -11,7 +11,7 @@
 <script>
 import MaskMixin from '@/components/ui/mixins/mask'
 export default {
-  name: 'MvPopup',
+  name: 'MvDrawer',
   mixins: [MaskMixin],
   props: {
     width: {
@@ -41,7 +41,7 @@ export default {
 </script>
 
 <style lang="scss">
-  .mv-popup {
+  .mv-drawer {
     bottom: 0;
     height: 100%;
     left: 0;
@@ -50,7 +50,7 @@ export default {
     top: 0;
     width: 100%;
 
-    .mv-popup-container {
+    .mv-drawer-container {
       left: 50%;
       position: absolute;
       top: 50%;

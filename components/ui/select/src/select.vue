@@ -10,17 +10,24 @@
         v-model="value"
         :class="toggleClass"
         :readonly="readonly"
+        :disabled="disabled"
         :placeholder="placeholder"
         @focus="handleFocus"
       ></mv-input>
+      <span class="mv-select-icon">
+        <mv-icon name="mv-arrow-down"></mv-icon>
+      </span>
     </div>
     <transition name="mv-select-fade-down">
       <div v-show="visible" class="mv-select-down">
-        <mv-scrollbar :complete="domDon">
+        <mv-scrollbar v-if="scrollBar" :complete="domDon">
           <ul class="mv-option-wrap">
             <slot></slot>
           </ul>
         </mv-scrollbar>
+        <ul v-else class="mv-option-wrap">
+          <slot></slot>
+        </ul>
       </div>
     </transition>
   </div>
@@ -29,15 +36,21 @@
 <script>
 import Input from '@/components/ui/input'
 import Scrollbar from '@/components/ui/scrollbar'
+import Icon from '@/components/ui/icon'
 import clickoutside from '@/components/ui/directives/clickoutside'
 export default {
   name: 'MvSelect',
   components: {
     [Scrollbar.name]: Scrollbar,
-    [Input.name]: Input
+    [Input.name]: Input,
+    [Icon.name]: Icon
   },
   directives: { clickoutside },
   props: {
+    scrollBar: {
+      type: Boolean,
+      default: false
+    },
     placeholder: {
       type: String,
       default: '请选择'
@@ -45,6 +58,10 @@ export default {
     value: {
       type: [String, Number],
       default: null
+    },
+    disabled: {
+      type: Boolean,
+      default: false
     }
   },
   provide () {
@@ -74,11 +91,16 @@ export default {
   },
   created () {
     // this.curValue = this.value
+    console.log(this.disabled, 'disabled====')
     this.$on('handleOptionClick', this.handleOptionSelect)
   },
   methods: {
     toggleSelect () {
-      this.visible = !this.visible
+      if (this.disabled) {
+        this.visible = false
+      } else {
+        this.visible = !this.visible
+      }
     },
     handleOptionSelect (option) {
       console.log(option)
@@ -106,6 +128,18 @@ export default {
       cursor: pointer;
     }
 
+    .mv-select-input {
+      position: relative;
+    }
+
+    .mv-select-icon {
+      font-size: 16px;
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translate3d(0, -50%, 0);
+    }
+
     .mv-select-down {
       background-color: #fff;
       box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
@@ -114,6 +148,7 @@ export default {
       padding: 10px 0;
       position: absolute;
       width: 100%;
+      z-index: 9;
     }
   }
 

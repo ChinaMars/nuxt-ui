@@ -1,37 +1,58 @@
 <template>
   <div class="ui-guide">
-    <div @click="loading">loading 加载</div>
-    <div @click="toast">toast 提示</div>
-    <div class="scroll-text">
-      <mv-scrollbar>
-        <ul>
-          <li>1</li>
-          <li>2</li>
-          <li>4</li>
-          <li>1</li>
-          <li>2</li>
-          <li>4</li>
-          <li>1</li>
-          <li>2</li>
-          <li>4</li>
-        </ul>
-      </mv-scrollbar>
+    <div class="block">
+      <div @click="loading">loading 加载</div>
     </div>
-    {{ addressModel }}
-    <mv-select v-model="addressModel" placeholder="请选择">
-      <mv-option
-        v-for="(item, Itemindex) in address.region"
-        :key="Itemindex"
-        :label="item.name"
-        :value="item.code"
-      ></mv-option>
-    </mv-select>
-    <mv-button-group>
-      <mv-button :type-style="button.typeStyle">按钮1</mv-button>
-      <mv-button :type-style="button.typeStyle">按钮2</mv-button>
-      <mv-button :type-style="button.typeStyle">按钮3</mv-button>
-    </mv-button-group>
-    <div class="mv-dialog" @click="mvDialog">dialog 对话框</div>
+    <div class="block">
+      <div @click="toast">toast 提示</div>
+    </div>
+    <div class="block">
+      <div class="scroll-text">
+        <mv-scrollbar :complete="scrollBar">
+          <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>4</li>
+            <li>1</li>
+            <li>2</li>
+            <li>4</li>
+            <li>1</li>
+            <li>2</li>
+            <li>4</li>
+          </ul>
+        </mv-scrollbar>
+      </div>
+    </div>
+    <div class="block">
+      <div class="select-wrap">
+        <mv-select v-model="addressRegionModel" placeholder="请选择" :disabled="address.region.disabled" :scroll-bar="scrollBar">
+          <mv-option
+            v-for="(item, Itemindex) in address.region.options"
+            :key="Itemindex"
+            :label="item.name"
+            :value="item.code"
+          ></mv-option>
+        </mv-select>
+        <mv-select v-model="addressCityModel" placeholder="请选择" :disabled="address.city.disabled" :scroll-bar="scrollBar">
+          <mv-option
+            v-for="(item, Itemindex) in address.city.options"
+            :key="Itemindex"
+            :label="item.name"
+            :value="item.code"
+          ></mv-option>
+        </mv-select>
+      </div>
+    </div>
+    <div class="block">
+      <mv-button-group>
+        <mv-button :type-style="button.typeStyle">按钮1</mv-button>
+        <mv-button :type-style="button.typeStyle">按钮2</mv-button>
+        <mv-button :type-style="button.typeStyle">按钮3</mv-button>
+      </mv-button-group>
+    </div>
+    <div class="block">
+      <div class="mv-dialog" @click="mvDialog">dialog 对话框</div>
+    </div>
     <mv-dialog
       :visible.sync="dialogShow"
       :position="`center`"
@@ -79,30 +100,55 @@ Vue.use(Scrollbar)
 export default {
   data () {
     return {
+      scrollBar: true,
       dialogShow: false,
       address: {
-        region: {},
-        city: {},
-        district: {}
+        region: {
+          disabled: false,
+          options: {}
+        },
+        city: {
+          disabled: true,
+          options: {}
+        },
+        district: {
+          disabled: true,
+          options: {}
+        }
       },
-      addressModel: 'CN-2',
+      addressRegionModel: '',
+      addressCityModel: '',
       button: {
         type: 'submit',
         typeStyle: 'primary'
       }
     }
   },
+  watch: {
+    addressRegionModel(newVal, oldVal) {
+      const allAddress = address.data
+      for (const i in allAddress.region) {
+        for (const key in allAddress.region[i]) {
+          if (allAddress.region[i][key].code === newVal) {
+            this.address.city.options = allAddress.city[key]
+            this.address.city.disabled = false
+          }
+        }
+      }
+    }
+  },
   created () {
     const allAddress = address.data
-    for (const key in allAddress) {
-      for (const i in allAddress[key]) {
-        this.address[key][i] = allAddress[key][i][i]
-      }
+    for (const key in allAddress.region) {
+      Object.assign(this.address.region.options, allAddress.region[key])
     }
   },
   methods: {
     loading () {
-      const loading = this.$loading()
+      const loading = this.$loading({
+        spinner: 'mv-loading',
+        text: '加载中文字更改'
+      })
       setTimeout(() => { loading.close() }, 2000)
     },
     toast () {
@@ -137,6 +183,18 @@ export default {
 <style lang="scss" scoped>
   .ui-guide {
     padding: 100px;
+
+    .block {
+      margin-bottom: 30px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    .select-wrap {
+      display: flex;
+    }
 
     .scroll-text {
       height: 50px;

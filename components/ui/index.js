@@ -7,6 +7,7 @@ import Select from '@/components/ui/select'
 import Scrollbar from '@/components/ui/scrollbar'
 import Icon from '@/components/ui/icon'
 import Input from '@/components/ui/input'
+import Drawer from '@/components/ui/drawer'
 
 export {
   Loading,
@@ -17,5 +18,6 @@ export {
   Select,
   Scrollbar,
   Icon,
-  Input
+  Input,
+  Drawer
 }

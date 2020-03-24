@@ -11,7 +11,7 @@
             <div class="mv-dialog-title">{{ title }}</div>
           </slot>
           <div class="mv-dialog-close" @click="handleClose">
-            <mv-icon name="close"></mv-icon>
+            <mv-icon name="mv-close"></mv-icon>
           </div>
         </div>
         <div class="mv-dialog-body">
