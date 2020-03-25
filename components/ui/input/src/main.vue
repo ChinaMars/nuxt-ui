@@ -38,8 +38,12 @@ export default {
       return className
     }
   },
+  watch: {
+    value(val) {
+
+    }
+  },
   created () {
-    console.log(this.disabled, 'disableddisableddisableddisabled')
     console.log(this.value, 'cur value')
   },
   methods: {
@@ -63,7 +67,7 @@ export default {
       height: 40px;
       line-height: 40px;
       outline: none;
-      padding: 0 20px;
+      padding: 0 15px;
       width: 100%;
 
       &.is-disabled {

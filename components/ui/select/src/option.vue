@@ -4,7 +4,7 @@
     @click.stop="optionClick"
   >
     <slot>
-      <span>{{ label }}</span>
+      <span>{{ currentLabel }}</span>
     </slot>
   </li>
 </template>
@@ -13,6 +13,11 @@
 import findCompontent from '@/components/ui/utils/find-compontent'
 export default {
   name: 'MvOption',
+  data() {
+    return {
+      currentLabel: null
+    }
+  },
   props: {
     value: {
       type: [String, Number],
@@ -24,8 +29,14 @@ export default {
     }
   },
   inject: ['select'],
-  created () {
+  computed: {
 
+  },
+  watch: {
+
+  },
+  created () {
+    this.currentLabel = this.label
   },
   methods: {
     optionClick () {
@@ -44,6 +55,10 @@ export default {
       height: 34px;
       line-height: 34px;
       padding: 0 20px;
+
+      &:hover {
+        background: #f5f7fa;
+      }
     }
   }
 </style>

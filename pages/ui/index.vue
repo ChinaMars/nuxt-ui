@@ -25,7 +25,7 @@
     </div>
     <div class="block">
       <div class="select-wrap">
-        <mv-select v-model="addressRegionModel" placeholder="请选择" :disabled="address.region.disabled" :scroll-bar="scrollBar">
+        <mv-select v-model="addressRegionModel" :placeholder="address.region.placeholder" :disabled="address.region.disabled" :scroll-bar="scrollBar">
           <mv-option
             v-for="(item, Itemindex) in address.region.options"
             :key="Itemindex"
@@ -33,7 +33,7 @@
             :value="item.code"
           ></mv-option>
         </mv-select>
-        <mv-select v-model="addressCityModel" placeholder="请选择" :disabled="address.city.disabled" :scroll-bar="scrollBar">
+        <mv-select v-model="addressCityModel" :placeholder="address.city.placeholder" :disabled="address.city.disabled" :scroll-bar="scrollBar">
           <mv-option
             v-for="(item, Itemindex) in address.city.options"
             :key="Itemindex"
@@ -104,19 +104,22 @@ export default {
       dialogShow: false,
       address: {
         region: {
+          placeholder: '请选择省',
           disabled: false,
           options: {}
         },
         city: {
+          placeholder: '请选择市',
           disabled: true,
           options: {}
         },
         district: {
+          placeholder: '请选择区',
           disabled: true,
           options: {}
         }
       },
-      addressRegionModel: '',
+      addressRegionModel: 'CN-5',
       addressCityModel: '',
       button: {
         type: 'submit',
@@ -126,7 +129,9 @@ export default {
   },
   watch: {
     addressRegionModel(newVal, oldVal) {
+      console.log(newVal, '==========')
       const allAddress = address.data
+      this.addressCityModel = ''
       for (const i in allAddress.region) {
         for (const key in allAddress.region[i]) {
           if (allAddress.region[i][key].code === newVal) {

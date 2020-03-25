@@ -14,9 +14,7 @@ function dynamicStrategy (el, callback) {
   return {
     el,
     check (event) {
-      console.log(hasMouseOver, 'hasMouseOver')
       if (!hasMouseOver) {
-        console.log(callback)
         callback(event)
       }
     },
@@ -44,10 +42,8 @@ function bind (el, binding) {
 
   // unbind any existing listeners first
   unbind(el)
-  console.log(domListener, 'domListener======')
   if (!domListener) {
     domListener = on(document.documentElement, 'click', (event) => {
-      console.log(event, 'event======')
       registeredHandlers.forEach(handler => handler.check(event))
     })
   }
@@ -67,7 +63,6 @@ function update (el, binding) {
 
 function unbind (el) {
   let index = registeredHandlers.length - 1
-  console.log(registeredHandlers, '22222')
   while (index >= 0) {
     if (registeredHandlers[index].el === el) {
       registeredHandlers[index].destroy()
@@ -78,7 +73,6 @@ function unbind (el) {
   }
 
   if (registeredHandlers.length === 0 && domListener) {
-    console.log('222222')
     domListener.destroy()
     domListener = null
   }
