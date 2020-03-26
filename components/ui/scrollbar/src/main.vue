@@ -53,7 +53,7 @@ export default {
     }
   },
   created () {
-    console.log(isMobile)
+
   },
   mounted () {
     this.$nextTick(() => {

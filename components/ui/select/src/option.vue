@@ -1,5 +1,6 @@
 <template>
   <li
+    :class="{'selected': selected}"
     class="mv-option"
     @click.stop="optionClick"
   >
@@ -30,7 +31,12 @@ export default {
   },
   inject: ['select'],
   computed: {
-
+    currentValue() {
+      return this.select.value
+    },
+    selected() {
+      return this.checkedSelected(this.currentValue, this.value)
+    }
   },
   watch: {
 
@@ -42,6 +48,9 @@ export default {
     optionClick () {
       const getCompontent = findCompontent(this, 'MvSelect')
       getCompontent.$emit('handleOptionClick', this)
+    },
+    checkedSelected (value, value2) {
+      return value === value2
     }
   }
 }
@@ -55,6 +64,10 @@ export default {
       height: 34px;
       line-height: 34px;
       padding: 0 20px;
+
+      &.selected {
+        background: #f5f7fa;
+      }
 
       &:hover {
         background: #f5f7fa;

@@ -44,7 +44,7 @@ export default {
     }
   },
   created () {
-    console.log(this.value, 'cur value')
+
   },
   methods: {
     handleInput (event) {
