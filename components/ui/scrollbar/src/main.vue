@@ -17,10 +17,15 @@ export default {
     complete: {
       type: Boolean,
       default: false
+    },
+    iScrollToTop: {
+      type: Boolean,
+      default: false
     }
   },
   data () {
     return {
+      bScroll: null,
       options: {
         scrollY: true,
         scrollbar: {
@@ -37,9 +42,13 @@ export default {
       if (val) {
         // 监听dom是否加载完毕，重新实例化
         this.$nextTick(() => {
-          /* eslint-disable no-new */
-          new BScroll(this.$refs.scrollbar, this.options)
+          this.bScroll.refresh()
         })
+      }
+    },
+    iScrollToTop (val) {
+      if (val) {
+        this.bScroll.scrollTo(0,0)
       }
     }
   },
@@ -47,11 +56,9 @@ export default {
     console.log(isMobile)
   },
   mounted () {
-    if (this.complete) {
-      this.$nextTick(() => {
-        new BScroll(this.$refs.scrollbar, this.options)
-      })
-    }
+    this.$nextTick(() => {
+      this.bScroll = new BScroll(this.$refs.scrollbar, this.options)
+    })
   }
 }
 </script>

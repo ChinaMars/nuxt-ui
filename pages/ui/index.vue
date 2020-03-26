@@ -25,7 +25,12 @@
     </div>
     <div class="block">
       <div class="select-wrap">
-        <mv-select v-model="addressRegionModel" :placeholder="address.region.placeholder" :disabled="address.region.disabled" :scroll-bar="scrollBar">
+        <mv-select
+          v-model="regionModel"
+          :placeholder="address.region.placeholder"
+          :disabled="address.region.disabled"
+          :scroll-bar="scrollBar"
+        >
           <mv-option
             v-for="(item, Itemindex) in address.region.options"
             :key="Itemindex"
@@ -33,9 +38,27 @@
             :value="item.code"
           ></mv-option>
         </mv-select>
-        <mv-select v-model="addressCityModel" :placeholder="address.city.placeholder" :disabled="address.city.disabled" :scroll-bar="scrollBar">
+        <mv-select
+          v-model="cityModel"
+          :placeholder="address.city.placeholder"
+          :disabled="address.city.disabled"
+          :scroll-bar="scrollBar"
+        >
           <mv-option
             v-for="(item, Itemindex) in address.city.options"
+            :key="Itemindex"
+            :label="item.name"
+            :value="item.code"
+          ></mv-option>
+        </mv-select>
+        <mv-select
+          v-model="districtModel"
+          :placeholder="address.district.placeholder"
+          :disabled="address.district.disabled"
+          :scroll-bar="scrollBar"
+        >
+          <mv-option
+            v-for="(item, Itemindex) in address.district.options"
             :key="Itemindex"
             :label="item.name"
             :value="item.code"
@@ -119,8 +142,9 @@ export default {
           options: {}
         }
       },
-      addressRegionModel: 'CN-5',
-      addressCityModel: '',
+      regionModel: 'CN-5',
+      cityModel: '',
+      districtModel: '',
       button: {
         type: 'submit',
         typeStyle: 'primary'
@@ -128,15 +152,27 @@ export default {
     }
   },
   watch: {
-    addressRegionModel(newVal, oldVal) {
-      console.log(newVal, '==========')
+    regionModel(newVal) {
       const allAddress = address.data
-      this.addressCityModel = ''
+      this.cityModel = ''
+      this.districtModel = ''
+      this.address.city.disabled = false
       for (const i in allAddress.region) {
         for (const key in allAddress.region[i]) {
           if (allAddress.region[i][key].code === newVal) {
             this.address.city.options = allAddress.city[key]
-            this.address.city.disabled = false
+          }
+        }
+      }
+    },
+    cityModel(newVal) {
+      const allAddress = address.data
+      this.districtModel = ''
+      this.address.district.disabled = false
+      for (const i in allAddress.district) {
+        for (const key in allAddress.district[i]) {
+          if (allAddress.district[i][key].code === newVal) {
+            this.address.district.options = allAddress.district[key]
           }
         }
       }
@@ -199,6 +235,10 @@ export default {
 
     .select-wrap {
       display: flex;
+
+      .mv-select {
+        margin-right: 15px;
+      }
     }
 
     .scroll-text {

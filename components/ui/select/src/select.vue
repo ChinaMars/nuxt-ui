@@ -6,7 +6,6 @@
     <div
       class="mv-select-input"
     >
-      {{ currentPlaceholder }}
       <mv-input
         v-model="value"
         :class="toggleClass"
@@ -20,13 +19,16 @@
       </span>
     </div>
     <transition name="mv-select-fade-down">
-      <div v-show="visible" ref="selectOptions" :style="{ height: selectOptionsHeight }" class="mv-select-down">
-        <mv-scrollbar v-if="scrollBar" :complete="domDon">
-          <ul class="mv-option-wrap">
+      <div v-show="visible" :class="{'auto': !iScrollBar}" class="mv-select-down">
+        <mv-scrollbar
+          v-if="iScrollBar"
+          :complete="domDon"
+        >
+          <ul class="mv-option-wrap" ref="selectOptions">
             <slot></slot>
           </ul>
         </mv-scrollbar>
-        <ul v-else class="mv-option-wrap">
+        <ul v-else class="mv-option-wrap" ref="selectOptions">
           <slot></slot>
         </ul>
       </div>
@@ -65,10 +67,6 @@ export default {
     disabled: {
       type: Boolean,
       default: false
-    },
-    maxHeight: {
-      type: Number,
-      default: 170
     }
   },
   provide () {
@@ -78,14 +76,13 @@ export default {
   },
   data () {
     return {
+      iScrollBar: false,
       domDon: false,
       visible: false,
       readonly: true,
       currentLabel: null,
       currentPlaceholder: null,
-      cachePlaceholder: null,
-      selectOptionsHeight: null
-      // curValue: null
+      cachePlaceholder: null
     }
   },
   computed: {
@@ -97,33 +94,31 @@ export default {
     visible (newVal) {
       if (newVal) {
         this.$nextTick(() => {
-          const selectOptionsHeight = this.$refs.selectOptions.clientHeight
-          console.log(selectOptionsHeight, 'selectOptionsHeight')
-          if (selectOptionsHeight >= this.maxHeight) {
-            this.selectOptionsHeight = this.maxHeight + 'px'
+          if (this.$refs.selectOptions.clientHeight < 170) {
+            this.iScrollBar = false
+          } else {
+            this.iScrollBar = true
+            this.domDon = newVal // 监听dom是否加载完毕
           }
-          this.domDon = newVal // 监听dom是否加载完毕
         })
       }
     },
     placeholder: {
       immediate: true,
       handler: function (value) {
-        console.log(value, 'placeValue======')
         this.cachePlaceholder = value
         this.currentPlaceholder = value
       }
     },
     value (newVal) {
-      console.log(newVal, 'newVal=========')
       if (newVal === '') {
         this.currentPlaceholder = this.cachePlaceholder
       }
     }
   },
   created () {
+    this.iScrollBar = this.scrollBar
     this.$on('handleOptionClick', this.handleOptionSelect)
-    this.$on('setSelected', this.setSelected)
   },
   methods: {
     toggleSelect () {
@@ -140,14 +135,11 @@ export default {
       this.currentPlaceholder = option.label
       this.$emit('input', option.value)
     },
-    setSelected () {
-      this.currentPlaceholder = '重置'
-    },
     handleClose () {
       this.visible = false
     },
     handleFocus (value) {
-      // console.log(value)
+
     }
   }
 }
@@ -178,11 +170,15 @@ export default {
     .mv-select-down {
       background-color: #fff;
       box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-      // height: 170px;
+      height: 170px;
       overflow: hidden;
       position: absolute;
       width: 100%;
       z-index: 9;
+
+      &.auto {
+        height: auto;
+      }
     }
   }
 
