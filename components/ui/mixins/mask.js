@@ -7,7 +7,7 @@ export default {
     return {
       instanceMask: null,
       defaultOptions: {
-        zIndex: 99
+        zIndex: 999
       }
     }
   },

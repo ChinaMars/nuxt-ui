@@ -1,9 +1,10 @@
 <template>
   <transition name="mv-dialog-fade">
-    <div v-show="visible"
-         class="mv-dialog-wrap"
-         :style="{'z-index': zIndex}"
-         :class="positionClass"
+    <div
+      v-show="visible"
+      class="mv-dialog-wrap"
+      :style="{'z-index': zIndex}"
+      :class="positionClass"
     >
       <div class="mv-dialog" :style="style">
         <div class="mv-dialog-header">
@@ -138,6 +139,10 @@ export default {
 
     .mv-dialog-close {
       cursor: pointer;
+
+      .icon-mv-close {
+        font-size: 16px;
+      }
     }
 
     .mv-dialog-body {

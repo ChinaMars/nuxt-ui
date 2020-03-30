@@ -57,19 +57,18 @@ export default {
   .mv-button:focus,
   .mv-button:hover {
     background-color: #000;
-    border-color: #c6e2ff;
     color: #fff;
   }
 
   .mv-button-primary {
     background-color: #000;
+    border-color: #000;
     color: #fff;
   }
 
   .mv-button-primary:focus,
   .mv-button-primary:hover {
     background-color: #4b4b4b;
-    border-color: #c6e2ff;
     color: #fff;
   }
 </style>

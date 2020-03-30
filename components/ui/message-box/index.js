@@ -1,7 +1,7 @@
 import MessageBox from './src/main'
 
-MessageBox.install = function (Vue) {
-  Vue.component(MessageBox.name, MessageBox)
+MessageBox.install = (Vue) => {
+  Vue.prototype.$messageBox = MessageBox
 }
 
 export default MessageBox

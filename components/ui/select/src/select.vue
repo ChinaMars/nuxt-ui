@@ -92,13 +92,13 @@ export default {
   },
   watch: {
     visible (newVal) {
+      this.domDon = newVal // 监听dom是否加载完毕
       if (newVal) {
         this.$nextTick(() => {
           if (this.$refs.selectOptions.clientHeight < 170) {
             this.iScrollBar = false
           } else {
             this.iScrollBar = true
-            this.domDon = newVal // 监听dom是否加载完毕
           }
         })
       }

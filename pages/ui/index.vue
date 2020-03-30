@@ -7,18 +7,11 @@
       <div @click="toast">toast 提示</div>
     </div>
     <div class="block">
+      <h1>滚动条</h1>
       <div class="scroll-text">
         <mv-scrollbar :complete="scrollBar">
           <ul>
-            <li>1</li>
-            <li>2</li>
-            <li>4</li>
-            <li>1</li>
-            <li>2</li>
-            <li>4</li>
-            <li>1</li>
-            <li>2</li>
-            <li>4</li>
+            <li v-for="(item, index) in 50" :key="index">滚动内容{{item}}</li>
           </ul>
         </mv-scrollbar>
       </div>
@@ -67,6 +60,9 @@
       </div>
     </div>
     <div class="block">
+      <mv-button :type-style="button.typeStyle">按钮</mv-button>
+    </div>
+    <div class="block">
       <mv-button-group>
         <mv-button :type-style="button.typeStyle">按钮1</mv-button>
         <mv-button :type-style="button.typeStyle">按钮2</mv-button>
@@ -75,6 +71,9 @@
     </div>
     <div class="block">
       <div class="mv-dialog" @click="mvDialog">dialog 对话框</div>
+    </div>
+    <div class="block">
+      <div class="mv-messageBox" @click="mvMessageBox">message box 信息弹窗</div>
     </div>
     <mv-dialog
       :visible.sync="dialogShow"
@@ -202,6 +201,24 @@ export default {
     mvDialog () {
       this.dialogShow = true
     },
+    mvMessageBox () {
+      this.$messageBox({
+        type: 'confirm',
+        zIndex: 1002,
+        title: '提示',
+        content: '是否删除？',
+        cancelButtonText: '取消',
+        confirmButtonText: '确定'
+      }).then(() => {
+        setTimeout(() => {
+          alert('reslove')
+        },1000)
+      }).catch(() => {
+        setTimeout(() => {
+          alert('reject')
+        },1000)
+      })
+    },
     handleBeforeClose (callback) {
       setTimeout(() => {
         const flag = true
@@ -214,7 +231,6 @@ export default {
       alert('dialog关闭后执行的事件')
     },
     handleBtnClick () {
-      console.log('button 点击事件')
       this.dialogShow = false
     }
   }
@@ -242,8 +258,14 @@ export default {
     }
 
     .scroll-text {
-      height: 50px;
+      height: 250px;
       overflow: hidden;
+      width: 240px;
+
+      li {
+        height: 34px;
+        line-height: 34px;
+      }
     }
   }
 </style>

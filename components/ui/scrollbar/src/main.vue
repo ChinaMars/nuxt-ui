@@ -42,6 +42,7 @@ export default {
       if (val) {
         // 监听dom是否加载完毕，重新实例化
         this.$nextTick(() => {
+          this.bScroll.scrollTo(0,0)
           this.bScroll.refresh()
         })
       }
