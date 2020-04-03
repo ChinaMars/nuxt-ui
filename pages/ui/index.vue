@@ -1,6 +1,6 @@
 <template>
   <div class="ui-guide">
-    <h1>项目 UI组件</h1>
+    <h1>基础 UI组件</h1>
     <div class="block">
       <h2>Loading 加载</h2>
       <mv-button
@@ -110,6 +110,15 @@
         :page-range="paginate.pageRange"
         :current-page="paginate.currentPage"
         :page-margin="paginate.pageMargin"
+        :prev-text="paginate.prevText"
+        :next-text="paginate.nextText"
+      >
+      </mv-pagination>
+      <mv-pagination
+        :page-count="paginate.count"
+        :page-range="paginate.pageRange"
+        :current-page="paginate.currentPage"
+        :page-margin="paginate.pageMargin"
       >
       </mv-pagination>
     </div>
@@ -193,6 +202,8 @@ export default {
         pageRange: 5, // 页码折叠区间数量
         currentPage: 6, // 当前页码
         pageMargin: 2, // 折叠前后出现几个页码按钮
+        prevText: '上一页',
+        nextText: '下一页'
       }
     }
   },
@@ -315,6 +326,14 @@ export default {
       li {
         height: 34px;
         line-height: 34px;
+      }
+    }
+
+    .mv-pagination {
+      margin-bottom: 15px;
+
+      &:last-child {
+        margin-bottom: 0;
       }
     }
   }

@@ -1,11 +1,14 @@
 <template>
   <div class="mv-pagination">
     <mv-button
-      icon="icon-mv-arrow-left"
-      class="button-prev"
+      :class="buttonClass(prevText)"
+      :icon="prevText ? '' : `icon-mv-arrow-left`"
       :disabled="curPage < 2"
+      class="pagination-button-prev pagination-button"
       @btnClick="prevBtnClick()"
-    ></mv-button>
+    >
+      {{ prevText }}
+    </mv-button>
     <ul class="mv-pager">
       <li
         :class="{'current': item.number === curPage}"
@@ -18,11 +21,14 @@
       </li>
     </ul>
     <mv-button
-      icon="icon-mv-arrow-right"
-      class="button-next"
+      :class="buttonClass(nextText)"
+      :icon="nextText ? '' : `icon-mv-arrow-right`"
       :disabled="curPage > pageCount - 1"
+      class="pagination-button-next pagination-button"
       @btnClick="nextBtnClick()"
-    ></mv-button>
+    >
+      {{ nextText }}
+    </mv-button>
     <!--{{ pages }}-->
   </div>
 </template>
@@ -59,6 +65,16 @@ export default {
     pageRange: {
       type: Number,
       default: 3
+    },
+    // 上一页文字
+    prevText: {
+      type: String,
+      default: ''
+    },
+    // 下一页文字
+    nextText: {
+      type: String,
+      default: ''
     }
   },
   data() {
@@ -145,6 +161,11 @@ export default {
       }
       console.log(pagerItem, 'pagerItem')
       return pagerItem
+    },
+    buttonClass() {
+      return (text) => {
+        return text !== '' ? 'pagination-button-text' : 'pagination-button-icon'
+      }
     }
   },
   created() {
@@ -171,19 +192,36 @@ export default {
   .mv-pagination {
     display: flex;
 
-    .button-prev,
-    .button-next {
+    .pagination-button {
       background: transparent;
       border: 0;
       padding: 2px;
+    }
+
+    .pagination-button-text {
+      padding: 2px 5px;
 
       &:disabled {
-        .icon {
+        span,
+        span:hover {
           color: #ccc;
+        }
+      }
 
-          &:hover {
-            color: #ccc;
-          }
+      span {
+        color: #7f828b;
+
+        &:hover {
+          color: #000;
+        }
+      }
+    }
+
+    .pagination-button-icon {
+      &:disabled {
+        .icon,
+        .icon:hover {
+          color: #ccc;
         }
       }
     }
