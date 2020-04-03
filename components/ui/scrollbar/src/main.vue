@@ -8,6 +8,7 @@
 import BScroll from '@better-scroll/core'
 import ScrollBar from '@better-scroll/scroll-bar'
 import MouseWheel from '@better-scroll/mouse-wheel'
+import { isMobile } from 'mobile-device-detect'
 BScroll.use(MouseWheel)
 BScroll.use(ScrollBar)
 export default {
@@ -16,10 +17,15 @@ export default {
     complete: {
       type: Boolean,
       default: false
+    },
+    iScrollToTop: {
+      type: Boolean,
+      default: false
     }
   },
   data () {
     return {
+      bScroll: null,
       options: {
         scrollY: true,
         scrollbar: {
@@ -27,7 +33,7 @@ export default {
           interactive: true
         },
         mouseWheel: true,
-        disableMouse: false
+        disableMouse: !isMobile
       }
     }
   },
@@ -36,15 +42,23 @@ export default {
       if (val) {
         // 监听dom是否加载完毕，重新实例化
         this.$nextTick(() => {
-          /* eslint-disable no-new */
-          new BScroll(this.$refs.scrollbar, this.options)
+          this.bScroll.scrollTo(0,0)
+          this.bScroll.refresh()
         })
+      }
+    },
+    iScrollToTop (val) {
+      if (val) {
+        this.bScroll.scrollTo(0,0)
       }
     }
   },
+  created () {
+
+  },
   mounted () {
     this.$nextTick(() => {
-      new BScroll(this.$refs.scrollbar, this.options)
+      this.bScroll = new BScroll(this.$refs.scrollbar, this.options)
     })
   }
 }

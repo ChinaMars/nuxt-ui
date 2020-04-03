@@ -1,4 +1,24 @@
 {
   "extends": "stylelint-config-sass-guidelines",
-  "rules": {}
+  "plugins": [
+    "stylelint-order"
+  ],
+  "rules": {
+    "selector-no-qualifying-type": [ true, {
+      "ignore": [ "attribute", "class", "id" ]
+    }],
+    "max-nesting-depth": [
+      5,{
+        "ignore": ["blockless-at-rules"]
+      }
+    ],
+    "order/order": [
+      "custom-properties",
+      "dollar-variables",
+      "declarations",
+      "rules",
+      "at-rules"
+    ],
+    "order/properties-alphabetical-order": true
+  }
 }

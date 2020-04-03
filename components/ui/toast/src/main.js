@@ -1,11 +1,11 @@
 import Vue from 'vue'
 import main from './main.vue'
-import { isClient } from '@/components/ui/utils/util'
+import { isServer } from '@/components/ui/utils/util'
 
 const ToastConstructor = Vue.extend(main)
 
 const Toast = (options = {}) => {
-  if (!isClient) { return }
+  if (!isServer) { return }
   const instance = new ToastConstructor({
     el: document.createElement('div'),
     data: options

@@ -7,6 +7,9 @@ import Select from '@/components/ui/select'
 import Scrollbar from '@/components/ui/scrollbar'
 import Icon from '@/components/ui/icon'
 import Input from '@/components/ui/input'
+import Drawer from '@/components/ui/drawer'
+import MessageBox from '@/components/ui/message-box'
+import Pagination from '@/components/ui/pagination'
 
 export {
   Loading,
@@ -17,5 +20,8 @@ export {
   Select,
   Scrollbar,
   Icon,
-  Input
+  Input,
+  Drawer,
+  MessageBox,
+  Pagination
 }

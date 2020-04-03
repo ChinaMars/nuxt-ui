@@ -15,12 +15,12 @@ export default {
     display: inline-block;
 
     .mv-button {
-      border: none;
+      border: 0;
       border-left: 1px solid #fff;
       float: left;
 
       &:first-child {
-        border: none;
+        border: 0;
         border-bottom-right-radius: 0;
         border-top-right-radius: 0;
       }

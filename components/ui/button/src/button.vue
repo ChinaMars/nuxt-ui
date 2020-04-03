@@ -35,7 +35,6 @@ export default {
 
 <style lang="scss">
   .mv-button {
-    -webkit-appearance: none;
     background: #fff;
     border: 1px solid #dcdfe6;
     border-radius: 4px;
@@ -51,9 +50,7 @@ export default {
     padding: 12px 20px;
     text-align: center;
     transition: 0.1s;
-    -moz-user-select: none;
-    -webkit-user-select: none;
-    -ms-user-select: none;
+    user-select: none;
     white-space: nowrap;
   }
 
