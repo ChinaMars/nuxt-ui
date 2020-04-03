@@ -104,68 +104,80 @@ export default {
 </script>
 
 <style lang="scss">
-  .mv-dialog-wrap{
-    position: fixed;
-    top: 0;
+  .mv-dialog-wrap {
     bottom: 0;
     left: 0;
-    right: 0;
     overflow: auto;
-    &.mv-dialog-center{
+    position: fixed;
+    right: 0;
+    top: 0;
+
+    &.mv-dialog-center {
+      align-items: center;
       display: flex;
       justify-content: center;
-      align-items: center;
     }
-    &.mv-dialog-auto{
-      .mv-dialog{
+
+    &.mv-dialog-auto {
+      .mv-dialog {
         margin: 100px auto 50px;
       }
     }
-    .mv-dialog{
-      background: #FFFFFF;
+
+    .mv-dialog {
+      background: #fff;
       padding: 20px;
     }
-    .mv-dialog-header{
+
+    .mv-dialog-header {
       display: flex;
       justify-content: space-between;
-      .mv-dialog-title{
+
+      .mv-dialog-title {
         font-size: 18px;
       }
-      .mv-dialog-close{
+
+      .mv-dialog-close {
         cursor: pointer;
       }
     }
-    .mv-dialog-body{
+
+    .mv-dialog-body {
       padding: 20px 0;
     }
-    .mv-dialog-footer{
+
+    .mv-dialog-footer {
       text-align: right;
     }
   }
+
   .mv-dialog-fade-enter-active {
-    animation: mv-dialog-fade-in .3s;
+    animation: mv-dialog-fade-in 0.3s;
   }
+
   .mv-dialog-fade-leave-active {
-    animation: mv-dialog-fade-out .3s;
+    animation: mv-dialog-fade-out 0.3s;
   }
   @keyframes mv-dialog-fade-in {
     0% {
-      transform: translate3d(0, -40px, 0);
       opacity: 0;
+      transform: translate3d(0, -40px, 0);
     }
+
     100% {
-      transform: translate3d(0, 0, 0);
       opacity: 1;
+      transform: translate3d(0, 0, 0);
     }
   }
   @keyframes mv-dialog-fade-out {
     0% {
-      transform: translate3d(0, 0, 0);
       opacity: 1;
+      transform: translate3d(0, 0, 0);
     }
+
     100% {
-      transform: translate3d(0, -40px, 0);
       opacity: 0;
+      transform: translate3d(0, -40px, 0);
     }
   }
 </style>

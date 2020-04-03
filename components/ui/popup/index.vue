@@ -41,19 +41,20 @@ export default {
 </script>
 
 <style lang="scss">
-  .mv-popup{
-    position: fixed;
-    width: 100%;
+  .mv-popup {
+    bottom: 0;
     height: 100%;
     left: 0;
+    position: fixed;
     right: 0;
     top: 0;
-    bottom: 0;
-    .mv-popup-container{
-      position: absolute;
+    width: 100%;
+
+    .mv-popup-container {
       left: 50%;
+      position: absolute;
       top: 50%;
-      transform: translate(-50%,-50%);
+      transform: translate(-50%, -50%);
     }
   }
 </style>

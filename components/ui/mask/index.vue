@@ -22,36 +22,39 @@ export default {
 </script>
 
 <style lang="scss">
-  .mv-mask{
-    position: fixed;
-    left: 0;
-    top: 0;
-    background: #000000;
-    width: 100%;
+  .mv-mask {
+    background: #000;
     height: 100%;
-    opacity: .5;
+    left: 0;
+    opacity: 0.5;
+    position: fixed;
+    top: 0;
+    width: 100%;
   }
+
   .mv-mask-fade-enter-active {
-    animation: mv-mask-fade-in .2s;
+    animation: mv-mask-fade-in 0.2s;
   }
 
   .mv-mask-fade-leave-active {
-    animation: mv-mask-fade-out .2s;
+    animation: mv-mask-fade-out 0.2s;
   }
 
   @keyframes mv-mask-fade-in {
     0% {
       opacity: 0;
     }
+
     100% {
-      opacity: .5;
+      opacity: 0.5;
     }
   }
 
   @keyframes mv-mask-fade-out {
     0% {
-      opacity: .5;
+      opacity: 0.5;
     }
+
     100% {
       opacity: 0;
     }

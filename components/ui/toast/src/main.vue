@@ -24,43 +24,49 @@ export default {
 </script>
 
 <style lang="scss">
-  .mv-toast{
-    position: fixed;
-    top: 0;
+  .mv-toast {
     bottom: 0;
-    right: 0;
     left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
   }
-  .mv-toast-container{
-    position: absolute;
+
+  .mv-toast-container {
     left: 50%;
-    transform: translate(-50%, -50%);
+    position: absolute;
     top: 50%;
+    transform: translate(-50%, -50%);
   }
-  .mv-toast-content{
-    background: #000000;
-    color: #FFFFFF;
-    padding: 20px;
+
+  .mv-toast-content {
+    background: #000;
     border-radius: 10px;
+    color: #fff;
+    padding: 20px;
   }
+
   .mv-toast-fade-enter-active {
-    animation: mv-toast-fade-in .2s;
+    animation: mv-toast-fade-in 0.2s;
   }
+
   .mv-toast-fade-leave-active {
-    animation: mv-toast-fade-out .2s;
+    animation: mv-toast-fade-out 0.2s;
   }
   @keyframes mv-toast-fade-in {
     0% {
       opacity: 0;
     }
+
     100% {
-      opacity: .5;
+      opacity: 0.5;
     }
   }
   @keyframes mv-toast-fade-out {
     0% {
-      opacity: .5;
+      opacity: 0.5;
     }
+
     100% {
       opacity: 0;
     }

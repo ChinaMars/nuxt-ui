@@ -51,9 +51,9 @@ export default {
 </script>
 
 <style lang="scss">
-  .mv-scrollbar{
-    position: relative;
+  .mv-scrollbar {
     height: 100%;
     overflow: hidden;
+    position: relative;
   }
 </style>
