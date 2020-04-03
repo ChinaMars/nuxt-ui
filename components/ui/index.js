@@ -9,6 +9,7 @@ import Icon from '@/components/ui/icon'
 import Input from '@/components/ui/input'
 import Drawer from '@/components/ui/drawer'
 import MessageBox from '@/components/ui/message-box'
+import Pagination from '@/components/ui/pagination'
 
 export {
   Loading,
@@ -21,5 +22,6 @@ export {
   Icon,
   Input,
   Drawer,
-  MessageBox
+  MessageBox,
+  Pagination
 }

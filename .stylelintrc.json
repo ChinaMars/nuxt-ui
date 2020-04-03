@@ -4,6 +4,9 @@
     "stylelint-order"
   ],
   "rules": {
+    "selector-no-qualifying-type": [ true, {
+      "ignore": [ "attribute", "class", "id" ]
+    }],
     "max-nesting-depth": [
       5,{
         "ignore": ["blockless-at-rules"]

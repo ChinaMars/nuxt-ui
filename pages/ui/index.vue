@@ -1,13 +1,26 @@
 <template>
   <div class="ui-guide">
+    <h1>项目 UI组件</h1>
     <div class="block">
-      <div @click="loading">loading 加载</div>
+      <h2>Loading 加载</h2>
+      <mv-button
+        @click.native="loading"
+        :type-style="button.typeStyle"
+      >
+        加载
+      </mv-button>
     </div>
     <div class="block">
-      <div @click="toast">toast 提示</div>
+      <h2>Toast 提示框</h2>
+      <mv-button
+        @click.native="toast"
+        :type-style="button.typeStyle"
+      >
+        提示框
+      </mv-button>
     </div>
     <div class="block">
-      <h1>滚动条</h1>
+      <h2>Scroll Bar 滚动条</h2>
       <div class="scroll-text">
         <mv-scrollbar :complete="scrollBar">
           <ul>
@@ -17,6 +30,7 @@
       </div>
     </div>
     <div class="block">
+      <h2>Select 三级联动</h2>
       <div class="select-wrap">
         <mv-select
           v-model="regionModel"
@@ -60,9 +74,11 @@
       </div>
     </div>
     <div class="block">
+      <h2>Button 按钮</h2>
       <mv-button :type-style="button.typeStyle">按钮</mv-button>
     </div>
     <div class="block">
+      <h2>Button Group 组合按钮</h2>
       <mv-button-group>
         <mv-button :type-style="button.typeStyle">按钮1</mv-button>
         <mv-button :type-style="button.typeStyle">按钮2</mv-button>
@@ -70,10 +86,32 @@
       </mv-button-group>
     </div>
     <div class="block">
-      <div class="mv-dialog" @click="mvDialog">dialog 对话框</div>
+      <h2>Dialog 对话框</h2>
+      <mv-button
+        @click.native="mvDialog"
+        :type-style="button.typeStyle"
+      >
+        对话框
+      </mv-button>
     </div>
     <div class="block">
-      <div class="mv-messageBox" @click="mvMessageBox">message box 信息弹窗</div>
+      <h2>Message Box 信息弹窗</h2>
+      <mv-button
+        @click.native="mvMessageBox"
+        :type-style="button.typeStyle"
+      >
+        信息弹窗
+      </mv-button>
+    </div>
+    <div class="block">
+      <h2>Pagination 分页</h2>
+      <mv-pagination
+        :page-count="paginate.count"
+        :page-range="paginate.pageRange"
+        :current-page="paginate.currentPage"
+        :page-margin="paginate.pageMargin"
+      >
+      </mv-pagination>
     </div>
     <mv-dialog
       :visible.sync="dialogShow"
@@ -112,13 +150,15 @@ import {
   ButtonGroup,
   Dialog,
   Select,
-  Scrollbar
+  Scrollbar,
+  Pagination
 } from '@/components/ui/index'
 Vue.use(ButtonGroup)
 Vue.use(Button)
 Vue.use(Dialog)
 Vue.use(Select)
 Vue.use(Scrollbar)
+Vue.use(Pagination)
 export default {
   data () {
     return {
@@ -147,6 +187,12 @@ export default {
       button: {
         type: 'submit',
         typeStyle: 'primary'
+      },
+      paginate: {
+        count: 20, // 总页数
+        pageRange: 5, // 页码折叠区间数量
+        currentPage: 6, // 当前页码
+        pageMargin: 2, // 折叠前后出现几个页码按钮
       }
     }
   },
@@ -239,7 +285,11 @@ export default {
 
 <style lang="scss" scoped>
   .ui-guide {
-    padding: 100px;
+    padding: 50px 100px;
+
+    h1 {
+      margin-bottom: 50px;
+    }
 
     .block {
       margin-bottom: 30px;
