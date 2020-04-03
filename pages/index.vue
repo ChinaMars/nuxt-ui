@@ -51,8 +51,6 @@ export default {
 .title {
   color: #35495e;
   display: block;
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   font-size: 100px;
   font-weight: 300;
   letter-spacing: 1px;

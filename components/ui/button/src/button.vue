@@ -5,13 +5,18 @@
     :class="`mv-button-${typeStyle}`"
     @click="handleClick"
   >
-    <span><slot></slot></span>
+    <i v-if="icon" :class="icon" class="icon"></i>
+    <span v-if="$slots.default"><slot></slot></span>
   </button>
 </template>
 
 <script>
+import Icon from '@/components/ui/icon'
 export default {
   name: 'MvButton',
+  components: {
+    [Icon.name]: Icon
+  },
   props: {
     type: {
       type: String,
@@ -20,6 +25,10 @@ export default {
     typeStyle: {
       type: String,
       default: 'default'
+    },
+    icon: {
+      type: String,
+      default: ''
     }
   },
   computed: {
@@ -52,24 +61,25 @@ export default {
     transition: 0.1s;
     user-select: none;
     white-space: nowrap;
+
+    &:disabled {
+      cursor: not-allowed;
+    }
   }
 
-  .mv-button:focus,
   .mv-button:hover {
     background-color: #000;
-    border-color: #c6e2ff;
     color: #fff;
   }
 
   .mv-button-primary {
     background-color: #000;
+    border-color: #000;
     color: #fff;
   }
 
-  .mv-button-primary:focus,
   .mv-button-primary:hover {
     background-color: #4b4b4b;
-    border-color: #c6e2ff;
     color: #fff;
   }
 </style>

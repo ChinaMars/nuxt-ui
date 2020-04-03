@@ -4,7 +4,7 @@
       ref="input"
       v-bind="$attrs"
       :type="type"
-      :readonly="readonly"
+      :class="inputClass"
       class="mv-input-inner"
       @focus="handleFocus"
       @input="handleInput"
@@ -25,16 +25,26 @@ export default {
       type: [String, Number],
       default: null
     },
-    readonly: {
+    disabled: {
       type: Boolean,
       default: false
     }
   },
   computed: {
+    inputClass() {
+      const className = [
+        {'is-disabled': this.disabled}
+      ]
+      return className
+    }
+  },
+  watch: {
+    value(val) {
 
+    }
   },
   created () {
-    console.log(this.value)
+
   },
   methods: {
     handleInput (event) {
@@ -50,10 +60,22 @@ export default {
 <style lang="scss">
   .mv-input {
     .mv-input-inner {
+      border: 1px solid #dcdfe6;
+      border-radius: 4px;
+      box-sizing: border-box;
+      display: inline-block;
       height: 40px;
       line-height: 40px;
       outline: none;
+      padding: 0 15px;
       width: 100%;
+
+      &.is-disabled {
+        background-color: #f5f7fa;
+        border-color: #e4e7ed;
+        color: #c0c4cc;
+        cursor: not-allowed;
+      }
     }
   }
 </style>

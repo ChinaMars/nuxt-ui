@@ -4,8 +4,8 @@
     <div class="block">
       <h2>Loading 加载</h2>
       <mv-button
-              @click.native="loading"
-              :type-style="button.typeStyle"
+        @click.native="loading"
+        :type-style="button.typeStyle"
       >
         加载
       </mv-button>
@@ -13,8 +13,8 @@
     <div class="block">
       <h2>Toast 提示框</h2>
       <mv-button
-              @click.native="toast"
-              :type-style="button.typeStyle"
+        @click.native="toast"
+        :type-style="button.typeStyle"
       >
         提示框
       </mv-button>
@@ -33,42 +33,42 @@
       <h2>Select 三级联动</h2>
       <div class="select-wrap">
         <mv-select
-                v-model="regionModel"
-                :placeholder="address.region.placeholder"
-                :disabled="address.region.disabled"
-                :scroll-bar="scrollBar"
+          v-model="regionModel"
+          :placeholder="address.region.placeholder"
+          :disabled="address.region.disabled"
+          :scroll-bar="scrollBar"
         >
           <mv-option
-                  v-for="(item, Itemindex) in address.region.options"
-                  :key="Itemindex"
-                  :label="item.name"
-                  :value="item.code"
+            v-for="(item, Itemindex) in address.region.options"
+            :key="Itemindex"
+            :label="item.name"
+            :value="item.code"
           ></mv-option>
         </mv-select>
         <mv-select
-                v-model="cityModel"
-                :placeholder="address.city.placeholder"
-                :disabled="address.city.disabled"
-                :scroll-bar="scrollBar"
+          v-model="cityModel"
+          :placeholder="address.city.placeholder"
+          :disabled="address.city.disabled"
+          :scroll-bar="scrollBar"
         >
           <mv-option
-                  v-for="(item, Itemindex) in address.city.options"
-                  :key="Itemindex"
-                  :label="item.name"
-                  :value="item.code"
+            v-for="(item, Itemindex) in address.city.options"
+            :key="Itemindex"
+            :label="item.name"
+            :value="item.code"
           ></mv-option>
         </mv-select>
         <mv-select
-                v-model="districtModel"
-                :placeholder="address.district.placeholder"
-                :disabled="address.district.disabled"
-                :scroll-bar="scrollBar"
+          v-model="districtModel"
+          :placeholder="address.district.placeholder"
+          :disabled="address.district.disabled"
+          :scroll-bar="scrollBar"
         >
           <mv-option
-                  v-for="(item, Itemindex) in address.district.options"
-                  :key="Itemindex"
-                  :label="item.name"
-                  :value="item.code"
+            v-for="(item, Itemindex) in address.district.options"
+            :key="Itemindex"
+            :label="item.name"
+            :value="item.code"
           ></mv-option>
         </mv-select>
       </div>
@@ -88,8 +88,8 @@
     <div class="block">
       <h2>Dialog 对话框</h2>
       <mv-button
-              @click.native="mvDialog"
-              :type-style="button.typeStyle"
+        @click.native="mvDialog"
+        :type-style="button.typeStyle"
       >
         对话框
       </mv-button>
@@ -97,8 +97,8 @@
     <div class="block">
       <h2>Message Box 信息弹窗</h2>
       <mv-button
-              @click.native="mvMessageBox"
-              :type-style="button.typeStyle"
+        @click.native="mvMessageBox"
+        :type-style="button.typeStyle"
       >
         信息弹窗
       </mv-button>
@@ -106,43 +106,43 @@
     <div class="block">
       <h2>Pagination 分页</h2>
       <mv-pagination
-              :page-count="paginate.count"
-              :page-range="paginate.pageRange"
-              :current-page="paginate.currentPage"
-              :page-margin="paginate.pageMargin"
-              :prev-text="paginate.prevText"
-              :next-text="paginate.nextText"
+        :page-count="paginate.count"
+        :page-range="paginate.pageRange"
+        :current-page="paginate.currentPage"
+        :page-margin="paginate.pageMargin"
+        :prev-text="paginate.prevText"
+        :next-text="paginate.nextText"
       >
       </mv-pagination>
       <mv-pagination
-              :page-count="paginate.count"
-              :page-range="paginate.pageRange"
-              :current-page="paginate.currentPage"
-              :page-margin="paginate.pageMargin"
+        :page-count="paginate.count"
+        :page-range="paginate.pageRange"
+        :current-page="paginate.currentPage"
+        :page-margin="paginate.pageMargin"
       >
       </mv-pagination>
     </div>
     <mv-dialog
-            :visible.sync="dialogShow"
-            :position="`center`"
-            :before-close="handleBeforeClose"
-            title="提示"
-            width="30%"
-            @closed="handleClosed"
+      :visible.sync="dialogShow"
+      :position="`center`"
+      :before-close="handleBeforeClose"
+      title="提示"
+      width="30%"
+      @closed="handleClosed"
     >
       <div class="dialog-content">
         dialog 组件
       </div>
       <div slot="footer" class="dialog-footer-content">
         <mv-button
-                @btnClick="handleBtnClick"
+          @btnClick="handleBtnClick"
         >
           取消
         </mv-button>
         <mv-button
-                :type="button.type"
-                :type-style="button.typeStyle"
-                @btnClick="handleBtnClick"
+          :type="button.type"
+          :type-style="button.typeStyle"
+          @btnClick="handleBtnClick"
         >
           确定
         </mv-button>
@@ -152,146 +152,146 @@
 </template>
 
 <script>
-  import Vue from 'vue'
-  import address from '@/assets/json/address'
-  import {
-    Button,
-    ButtonGroup,
-    Dialog,
-    Select,
-    Scrollbar,
-    Pagination
-  } from '@/components/ui/index'
-  Vue.use(ButtonGroup)
-  Vue.use(Button)
-  Vue.use(Dialog)
-  Vue.use(Select)
-  Vue.use(Scrollbar)
-  Vue.use(Pagination)
-  export default {
-    data () {
-      return {
-        scrollBar: true,
-        dialogShow: false,
-        address: {
-          region: {
-            placeholder: '请选择省',
-            disabled: false,
-            options: {}
-          },
-          city: {
-            placeholder: '请选择市',
-            disabled: true,
-            options: {}
-          },
-          district: {
-            placeholder: '请选择区',
-            disabled: true,
-            options: {}
-          }
+import Vue from 'vue'
+import address from '@/assets/json/address'
+import {
+  Button,
+  ButtonGroup,
+  Dialog,
+  Select,
+  Scrollbar,
+  Pagination
+} from '@/components/ui/index'
+Vue.use(ButtonGroup)
+Vue.use(Button)
+Vue.use(Dialog)
+Vue.use(Select)
+Vue.use(Scrollbar)
+Vue.use(Pagination)
+export default {
+  data () {
+    return {
+      scrollBar: true,
+      dialogShow: false,
+      address: {
+        region: {
+          placeholder: '请选择省',
+          disabled: false,
+          options: {}
         },
-        regionModel: 'CN-5',
-        cityModel: '',
-        districtModel: '',
-        button: {
-          type: 'submit',
-          typeStyle: 'primary'
+        city: {
+          placeholder: '请选择市',
+          disabled: true,
+          options: {}
         },
-        paginate: {
-          count: 20, // 总页数
-          pageRange: 5, // 页码折叠区间数量
-          currentPage: 6, // 当前页码
-          pageMargin: 2, // 折叠前后出现几个页码按钮
-          prevText: '上一页',
-          nextText: '下一页'
-        }
-      }
-    },
-    watch: {
-      regionModel(newVal) {
-        const allAddress = address.data
-        this.cityModel = ''
-        this.districtModel = ''
-        this.address.city.disabled = false
-        for (const i in allAddress.region) {
-          for (const key in allAddress.region[i]) {
-            if (allAddress.region[i][key].code === newVal) {
-              this.address.city.options = allAddress.city[key]
-            }
-          }
+        district: {
+          placeholder: '请选择区',
+          disabled: true,
+          options: {}
         }
       },
-      cityModel(newVal) {
-        const allAddress = address.data
-        this.districtModel = ''
-        this.address.district.disabled = false
-        for (const i in allAddress.district) {
-          for (const key in allAddress.district[i]) {
-            if (allAddress.district[i][key].code === newVal) {
-              this.address.district.options = allAddress.district[key]
-            }
-          }
-        }
-      }
-    },
-    created () {
-      const allAddress = address.data
-      for (const key in allAddress.region) {
-        Object.assign(this.address.region.options, allAddress.region[key])
-      }
-    },
-    methods: {
-      loading () {
-        const loading = this.$loading({
-          spinner: 'mv-loading',
-          text: '加载中文字更改'
-        })
-        setTimeout(() => { loading.close() }, 2000)
+      regionModel: 'CN-5',
+      cityModel: '',
+      districtModel: '',
+      button: {
+        type: 'submit',
+        typeStyle: 'primary'
       },
-      toast () {
-        this.$toast({
-          visible: true,
-          duration: 2000,
-          message: '加入购物成功'
-        })
-      },
-      mvDialog () {
-        this.dialogShow = true
-      },
-      mvMessageBox () {
-        this.$messageBox({
-          type: 'confirm',
-          zIndex: 1002,
-          title: '提示',
-          content: '是否删除？',
-          cancelButtonText: '取消',
-          confirmButtonText: '确定'
-        }).then(() => {
-          setTimeout(() => {
-            alert('reslove')
-          },1000)
-        }).catch(() => {
-          setTimeout(() => {
-            alert('reject')
-          },1000)
-        })
-      },
-      handleBeforeClose (callback) {
-        setTimeout(() => {
-          const flag = true
-          if (callback) {
-            callback(flag)
-          }
-        }, 1000)
-      },
-      handleClosed () {
-        alert('dialog关闭后执行的事件')
-      },
-      handleBtnClick () {
-        this.dialogShow = false
+      paginate: {
+        count: 20, // 总页数
+        pageRange: 5, // 页码折叠区间数量
+        currentPage: 6, // 当前页码
+        pageMargin: 2, // 折叠前后出现几个页码按钮
+        prevText: '上一页',
+        nextText: '下一页'
       }
     }
+  },
+  watch: {
+    regionModel(newVal) {
+      const allAddress = address.data
+      this.cityModel = ''
+      this.districtModel = ''
+      this.address.city.disabled = false
+      for (const i in allAddress.region) {
+        for (const key in allAddress.region[i]) {
+          if (allAddress.region[i][key].code === newVal) {
+            this.address.city.options = allAddress.city[key]
+          }
+        }
+      }
+    },
+    cityModel(newVal) {
+      const allAddress = address.data
+      this.districtModel = ''
+      this.address.district.disabled = false
+      for (const i in allAddress.district) {
+        for (const key in allAddress.district[i]) {
+          if (allAddress.district[i][key].code === newVal) {
+            this.address.district.options = allAddress.district[key]
+          }
+        }
+      }
+    }
+  },
+  created () {
+    const allAddress = address.data
+    for (const key in allAddress.region) {
+      Object.assign(this.address.region.options, allAddress.region[key])
+    }
+  },
+  methods: {
+    loading () {
+      const loading = this.$loading({
+        spinner: 'mv-loading',
+        text: '加载中文字更改'
+      })
+      setTimeout(() => { loading.close() }, 2000)
+    },
+    toast () {
+      this.$toast({
+        visible: true,
+        duration: 2000,
+        message: '加入购物成功'
+      })
+    },
+    mvDialog () {
+      this.dialogShow = true
+    },
+    mvMessageBox () {
+      this.$messageBox({
+        type: 'confirm',
+        zIndex: 1002,
+        title: '提示',
+        content: '是否删除？',
+        cancelButtonText: '取消',
+        confirmButtonText: '确定'
+      }).then(() => {
+        setTimeout(() => {
+          alert('reslove')
+        },1000)
+      }).catch(() => {
+        setTimeout(() => {
+          alert('reject')
+        },1000)
+      })
+    },
+    handleBeforeClose (callback) {
+      setTimeout(() => {
+        const flag = true
+        if (callback) {
+          callback(flag)
+        }
+      }, 1000)
+    },
+    handleClosed () {
+      alert('dialog关闭后执行的事件')
+    },
+    handleBtnClick () {
+      this.dialogShow = false
+    }
   }
+}
 </script>
 
 <style lang="scss" scoped>

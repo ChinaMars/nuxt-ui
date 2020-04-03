@@ -1,9 +1,10 @@
 <template>
   <transition name="mv-dialog-fade">
-    <div v-show="visible"
-         class="mv-dialog-wrap"
-         :style="{'z-index': zIndex}"
-         :class="positionClass"
+    <div
+      v-show="visible"
+      class="mv-dialog-wrap"
+      :style="{'z-index': zIndex}"
+      :class="positionClass"
     >
       <div class="mv-dialog" :style="style">
         <div class="mv-dialog-header">
@@ -11,7 +12,7 @@
             <div class="mv-dialog-title">{{ title }}</div>
           </slot>
           <div class="mv-dialog-close" @click="handleClose">
-            <mv-icon name="close"></mv-icon>
+            <mv-icon name="mv-close"></mv-icon>
           </div>
         </div>
         <div class="mv-dialog-body">
@@ -118,10 +119,8 @@ export default {
       justify-content: center;
     }
 
-    &.mv-dialog-auto {
-      .mv-dialog {
-        margin: 100px auto 50px;
-      }
+    .mv-dialog-auto {
+      margin: 100px auto 50px;
     }
 
     .mv-dialog {
@@ -132,13 +131,17 @@ export default {
     .mv-dialog-header {
       display: flex;
       justify-content: space-between;
+    }
 
-      .mv-dialog-title {
-        font-size: 18px;
-      }
+    .mv-dialog-title {
+      font-size: 18px;
+    }
 
-      .mv-dialog-close {
-        cursor: pointer;
+    .mv-dialog-close {
+      cursor: pointer;
+
+      .icon-mv-close {
+        font-size: 16px;
       }
     }
 
