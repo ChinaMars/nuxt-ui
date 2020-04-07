@@ -190,7 +190,7 @@ export default {
           options: {}
         }
       },
-      regionModel: 'CN-5',
+      regionModel: 'CN-13',
       cityModel: '',
       districtModel: '',
       button: {
@@ -208,15 +208,22 @@ export default {
     }
   },
   watch: {
-    regionModel(newVal) {
-      const allAddress = address.data
-      this.cityModel = ''
-      this.districtModel = ''
-      this.address.city.disabled = false
-      for (const i in allAddress.region) {
-        for (const key in allAddress.region[i]) {
-          if (allAddress.region[i][key].code === newVal) {
-            this.address.city.options = allAddress.city[key]
+    regionModel: {
+      immediate: true,
+      handler: function (value) {
+        const allAddress = address.data
+        this.cityModel = ''
+        this.districtModel = ''
+        if (value !== '') {
+          this.address.city.disabled = false
+        } else {
+          this.address.city.disabled = true
+        }
+        for (const i in allAddress.region) {
+          for (const key in allAddress.region[i]) {
+            if (allAddress.region[i][key].code === value) {
+              this.address.city.options = allAddress.city[key]
+            }
           }
         }
       }

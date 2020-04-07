@@ -24,9 +24,11 @@ export default {
 <style lang="scss">
   .mv-mask {
     background: #000;
+    bottom: 0;
     height: 100%;
     left: 0;
     opacity: 0.5;
+    overflow: hidden;
     position: fixed;
     top: 0;
     width: 100%;
