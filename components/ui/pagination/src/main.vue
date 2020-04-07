@@ -159,7 +159,6 @@ export default {
           setPagerItem(i)
         }
       }
-      console.log(pagerItem, 'pagerItem')
       return pagerItem
     },
     buttonClass() {

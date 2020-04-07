@@ -8,7 +8,6 @@
 import BScroll from '@better-scroll/core'
 import ScrollBar from '@better-scroll/scroll-bar'
 import MouseWheel from '@better-scroll/mouse-wheel'
-import { isMobile } from 'mobile-device-detect'
 BScroll.use(MouseWheel)
 BScroll.use(ScrollBar)
 export default {
@@ -32,8 +31,7 @@ export default {
           fade: true,
           interactive: true
         },
-        mouseWheel: true,
-        disableMouse: !isMobile
+        mouseWheel: true
       }
     }
   },

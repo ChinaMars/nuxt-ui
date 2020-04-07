@@ -39,7 +39,15 @@ export default {
     }
   },
   watch: {
-
+    value: {
+      immediate: true,
+      handler: function (value) {
+        if (this.currentValue === value) {
+          const getCompontent = findCompontent(this, 'MvSelect')
+          getCompontent.$emit('handleOptionClick', this)
+        }
+      }
+    }
   },
   created () {
     this.currentLabel = this.label
