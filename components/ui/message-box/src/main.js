@@ -8,7 +8,6 @@ let PromiseAction = {}
 
 const MessageBox = (options = {}) => {
   if (!isServer) { return }
-  console.log(options)
   const instance = new MessageBoxConstructor({
     el: document.createElement('div'),
     data: options

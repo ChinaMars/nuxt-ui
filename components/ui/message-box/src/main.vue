@@ -3,6 +3,7 @@
     <div
     v-show="visible"
     :style="{'z-index': zIndex}"
+    @click.self="handleWrapClick()"
     class="mv-message-box-wrap"
   >
     <div class="mv-message-box">
@@ -51,6 +52,11 @@ export default {
     return {
       visible: false,
       zIndex: 1001,
+      title: null,
+      content: '',
+      cancelButtonText: '取消',
+      confirmButtonText: '确定',
+      closeByMask: true,
       type: 'alert'
     }
   },
@@ -77,6 +83,11 @@ export default {
     handleAction(action) {
       this.visible = false
       this.callback(action)
+    },
+    handleWrapClick() {
+      if (this.closeByMask) {
+        this.visible = false
+      }
     },
     handleClose() {
       this.visible = false

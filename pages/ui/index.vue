@@ -123,11 +123,11 @@
       </mv-pagination>
     </div>
     <mv-dialog
+      title="提示"
+      width="30%"
       :visible.sync="dialogShow"
       :position="`center`"
       :before-close="handleBeforeClose"
-      title="提示"
-      width="30%"
       @closed="handleClosed"
     >
       <div class="dialog-content">
@@ -272,7 +272,8 @@ export default {
         title: '提示',
         content: '是否删除？',
         cancelButtonText: '取消',
-        confirmButtonText: '确定'
+        confirmButtonText: '确定',
+        closeByMask: false
       }).then(() => {
         setTimeout(() => {
           alert('reslove')
@@ -284,6 +285,7 @@ export default {
       })
     },
     handleBeforeClose (callback) {
+      alert('dialog关闭前执行的事件')
       setTimeout(() => {
         const flag = true
         if (callback) {
