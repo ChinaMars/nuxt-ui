@@ -28,8 +28,8 @@
 </template>
 
 <script>
-import MaskMixin from '@/components/ui/mixins/mask'
-import Icon from '@/components/ui/icon'
+import MaskMixin from '../../mixins/mask'
+import Icon from '../../icon'
 export default {
   name: 'MvDialog',
   components: {
@@ -84,7 +84,7 @@ export default {
     visible (val) {
       if (val) {
         this.createInstanceMask({
-          visible: true
+          show: true
         })
       } else {
         this.instanceMask.visible = false

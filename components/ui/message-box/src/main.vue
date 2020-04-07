@@ -38,9 +38,9 @@
 </template>
 
 <script>
-import MaskMixin from '@/components/ui/mixins/mask'
-import Button from '@/components/ui/button'
-import Icon from '@/components/ui/icon'
+import MaskMixin from '../../mixins/mask'
+import Button from '../../button'
+import Icon from '../../icon'
 export default {
   name: 'MvMessageBox',
   components: {
@@ -64,7 +64,7 @@ export default {
     visible (val) {
       if (val) {
         this.createInstanceMask({
-          visible: true
+          show: true
         })
       } else {
         this.instanceMask.visible = false

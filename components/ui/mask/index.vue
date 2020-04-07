@@ -10,12 +10,18 @@ export default {
   data () {
     return {
       visible: false,
-      zIndex: 999
+      zIndex: 999,
+      show: false
     }
   },
   watch: {
-    show (val) {
-      this.visible = val
+    show: {
+      immediate: true,
+      handler: function (value) {
+        setTimeout(() => {
+          this.visible = value
+        })
+      }
     }
   }
 }
@@ -35,11 +41,11 @@ export default {
   }
 
   .mv-mask-fade-enter-active {
-    animation: mv-mask-fade-in 0.2s;
+    animation: mv-mask-fade-in 0.3s;
   }
 
   .mv-mask-fade-leave-active {
-    animation: mv-mask-fade-out 0.2s;
+    animation: mv-mask-fade-out 0.3s;
   }
 
   @keyframes mv-mask-fade-in {

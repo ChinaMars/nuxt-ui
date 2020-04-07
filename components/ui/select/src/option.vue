@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import findCompontent from '@/components/ui/utils/find-compontent'
+import findCompontent from '../../utils/find-compontent'
 export default {
   name: 'MvOption',
   data() {

@@ -8,10 +8,9 @@
     >
       <mv-input
         v-model="value"
-        :class="toggleClass"
         :readonly="readonly"
-        :disabled="disabled"
         :placeholder="currentPlaceholder"
+        :disabled="disabled"
         @focus="handleFocus"
       ></mv-input>
       <span class="mv-select-icon">
@@ -37,10 +36,10 @@
 </template>
 
 <script>
-import Input from '@/components/ui/input'
-import Scrollbar from '@/components/ui/scrollbar'
-import Icon from '@/components/ui/icon'
-import clickoutside from '@/components/ui/directives/clickoutside'
+import Input from '../../input'
+import Scrollbar from '../../scrollbar'
+import Icon from '../../icon'
+import clickoutside from '../../directives/clickoutside'
 export default {
   name: 'MvSelect',
   components: {
@@ -86,9 +85,7 @@ export default {
     }
   },
   computed: {
-    toggleClass () {
-      return this.visible ? 'open' : ''
-    }
+
   },
   watch: {
     visible (newVal) {

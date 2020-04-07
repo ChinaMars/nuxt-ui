@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import Icon from '@/components/ui/icon'
+import Icon from '../../icon'
 export default {
   name: 'MvButton',
   components: {

@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import main from './main.vue'
-import { isServer } from '@/components/ui/utils/util'
+import { isServer } from '../../utils/util'
 
 const LoadingConstructor = Vue.extend(main)
 

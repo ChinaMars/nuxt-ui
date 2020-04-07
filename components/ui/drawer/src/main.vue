@@ -1,6 +1,13 @@
 <template>
-  <div class="mv-drawer">
-    <div class="mv-drawer-container" :class="positionClass" :style="{width: width}">
+  <div
+    v-show="visible"
+    class="mv-drawer"
+  >
+    <div
+      :class="positionClass"
+      :style="{width: width}"
+      class="mv-drawer-container"
+    >
       <div class="mv-drawer-content">
         <slot></slot>
       </div>
@@ -9,11 +16,15 @@
 </template>
 
 <script>
-import MaskMixin from '@/components/ui/mixins/mask'
+import MaskMixin from '../../mixins/mask'
 export default {
   name: 'MvDrawer',
   mixins: [MaskMixin],
   props: {
+    visible: {
+      type: Boolean,
+      default: false
+    },
     width: {
       type: String,
       default: 'auto'
@@ -32,10 +43,17 @@ export default {
       }
     }
   },
+  watch: {
+    visible (val) {
+      if (val) {
+        this.createInstanceMask({
+          show: true
+        })
+      }
+    }
+  },
   created () {
-    this.createInstanceMask({
-      show: true
-    })
+
   }
 }
 </script>
