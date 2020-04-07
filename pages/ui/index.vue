@@ -122,6 +122,22 @@
       >
       </mv-pagination>
     </div>
+    <div class="block">
+      <h2>Tabs 标签页</h2>
+      <mv-tabs
+        @tabs-click="handleTabsClick"
+      >
+        <mv-tabs-item
+          v-for="(item, index) in tabs"
+          :key="index"
+          :name="item.name"
+          :label="item.label"
+          :selected="item.selected"
+        >
+          <span>{{ item.name }}</span>
+        </mv-tabs-item>
+      </mv-tabs>
+    </div>
     <mv-dialog
       title="提示"
       width="30%"
@@ -160,7 +176,8 @@ import {
   Dialog,
   Select,
   Scrollbar,
-  Pagination
+  Pagination,
+  Tabs
 } from '@/components/ui/index'
 Vue.use(ButtonGroup)
 Vue.use(Button)
@@ -168,6 +185,7 @@ Vue.use(Dialog)
 Vue.use(Select)
 Vue.use(Scrollbar)
 Vue.use(Pagination)
+Vue.use(Tabs)
 export default {
   data () {
     return {
@@ -204,7 +222,24 @@ export default {
         pageMargin: 2, // 折叠前后出现几个页码按钮
         prevText: '上一页',
         nextText: '下一页'
-      }
+      },
+      tabs: [
+        {
+          name: '标签1',
+          label: 'tab1',
+          selected: false
+        },
+        {
+          name: '标签2',
+          label: 'tab2',
+          selected: true
+        },
+        {
+          name: '标签3',
+          label: 'tab3',
+          selected: false
+        }
+      ]
     }
   },
   watch: {
@@ -298,6 +333,9 @@ export default {
     },
     handleBtnClick () {
       this.dialogShow = false
+    },
+    handleTabsClick (tab) {
+      alert(tab.label)
     }
   }
 }
@@ -344,6 +382,10 @@ export default {
       &:last-child {
         margin-bottom: 0;
       }
+    }
+
+    .mv-tabs {
+      width: 300px;
     }
   }
 </style>

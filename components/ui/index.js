@@ -10,6 +10,7 @@ import Input from '@/components/ui/input'
 import Drawer from '@/components/ui/drawer'
 import MessageBox from '@/components/ui/message-box'
 import Pagination from '@/components/ui/pagination'
+import Tabs from '@/components/ui/tabs'
 
 export {
   Loading,
@@ -23,5 +24,6 @@ export {
   Input,
   Drawer,
   MessageBox,
-  Pagination
+  Pagination,
+  Tabs
 }
