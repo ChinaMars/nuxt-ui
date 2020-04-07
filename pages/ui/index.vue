@@ -138,6 +138,20 @@
         </mv-tabs-item>
       </mv-tabs>
     </div>
+    <div class="block">
+      <h2>抽屉</h2>
+      <mv-button
+        @click.native="mvDrawer"
+        :type-style="button.typeStyle"
+      >
+        默认打开抽屉方向
+      </mv-button>
+    </div>
+    <mv-drawer
+      :visible.sync="drawer.visible"
+    >
+      内容
+    </mv-drawer>
     <mv-dialog
       title="提示"
       width="30%"
@@ -151,14 +165,14 @@
       </div>
       <div slot="footer" class="dialog-footer-content">
         <mv-button
-          @btnClick="handleBtnClick"
+          @click.native="handleBtnClick"
         >
           取消
         </mv-button>
         <mv-button
           :type="button.type"
           :type-style="button.typeStyle"
-          @btnClick="handleBtnClick"
+          @click.native="handleBtnClick"
         >
           确定
         </mv-button>
@@ -177,7 +191,8 @@ import {
   Select,
   Scrollbar,
   Pagination,
-  Tabs
+  Tabs,
+  Drawer
 } from '@/components/ui/index'
 Vue.use(ButtonGroup)
 Vue.use(Button)
@@ -186,6 +201,7 @@ Vue.use(Select)
 Vue.use(Scrollbar)
 Vue.use(Pagination)
 Vue.use(Tabs)
+Vue.use(Drawer)
 export default {
   data () {
     return {
@@ -239,7 +255,10 @@ export default {
           label: 'tab3',
           selected: false
         }
-      ]
+      ],
+      drawer: {
+        visible: false
+      }
     }
   },
   watch: {
@@ -318,6 +337,9 @@ export default {
           alert('reject')
         },1000)
       })
+    },
+    mvDrawer() {
+      this.drawer.visible = true
     },
     handleBeforeClose (callback) {
       alert('dialog关闭前执行的事件')

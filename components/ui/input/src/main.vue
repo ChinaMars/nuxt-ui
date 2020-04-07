@@ -5,9 +5,9 @@
       v-bind="$attrs"
       :type="type"
       :class="inputClass"
-      class="mv-input-inner"
       @focus="handleFocus"
       @input="handleInput"
+      class="mv-input-inner"
     >
   </div>
 </template>
@@ -15,7 +15,6 @@
 <script>
 export default {
   name: 'MvInput',
-  inheritAttrs: false,
   props: {
     type: {
       type: String,
@@ -30,6 +29,7 @@ export default {
       default: false
     }
   },
+  inheritAttrs: false,
   computed: {
     inputClass() {
       const className = [

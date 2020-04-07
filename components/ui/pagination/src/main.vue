@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import Button from '@/components/ui/button'
+import Button from '../../button'
 export default {
   name: 'MvPagination',
   components: {

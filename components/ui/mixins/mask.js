@@ -1,6 +1,6 @@
 import Vue from 'vue'
-import { isServer } from '@/components/ui/utils/util'
-import MvMask from '@/components/ui/mask'
+import { isServer } from '../utils/util'
+import MvMask from '../mask'
 
 export default {
   data () {
