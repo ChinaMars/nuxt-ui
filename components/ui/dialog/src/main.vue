@@ -2,9 +2,10 @@
   <transition name="mv-dialog-fade">
     <div
       v-show="visible"
-      class="mv-dialog-wrap"
       :style="{'z-index': zIndex}"
       :class="positionClass"
+      @click.self="handleWrapClick()"
+      class="mv-dialog-wrap"
     >
       <div class="mv-dialog" :style="style">
         <div class="mv-dialog-header">
@@ -59,6 +60,10 @@ export default {
     beforeClose: {
       type: Function,
       default: null
+    },
+    closeByMask: {
+      type: Boolean,
+      default: true
     }
   },
   computed: {
@@ -95,9 +100,14 @@ export default {
       }
     },
     hideDialog (res) {
-      if (res) {
+      if (res) { // 监听是否关闭之前的事件执行完成
         this.$emit('update:visible', false)
         this.$emit('closed')
+      }
+    },
+    handleWrapClick() {
+      if (this.closeByMask) {
+        this.handleClose()
       }
     }
   }
