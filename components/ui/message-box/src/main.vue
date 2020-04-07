@@ -20,13 +20,13 @@
         <div class="mv-message-box-btns">
           <mv-button
             v-if="hideCancelButton"
-            @btnClick="handleAction('cancel')"
+            @click.native="handleAction('cancel')"
           >
             {{ cancelButtonText }}
           </mv-button>
           <mv-button
             type-style="primary"
-            @btnClick="handleAction('confirm')"
+            @click.native="handleAction('confirm')"
           >
             {{ confirmButtonText }}
           </mv-button>

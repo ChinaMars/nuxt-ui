@@ -5,7 +5,7 @@
       :icon="prevText ? '' : `icon-mv-arrow-left`"
       :disabled="curPage < 2"
       class="pagination-button-prev pagination-button"
-      @btnClick="prevBtnClick()"
+      @click.native="prevBtnClick()"
     >
       {{ prevText }}
     </mv-button>
@@ -25,7 +25,7 @@
       :icon="nextText ? '' : `icon-mv-arrow-right`"
       :disabled="curPage > pageCount - 1"
       class="pagination-button-next pagination-button"
-      @btnClick="nextBtnClick()"
+      @click.native="nextBtnClick()"
     >
       {{ nextText }}
     </mv-button>

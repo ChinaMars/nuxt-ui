@@ -45,8 +45,7 @@ module.exports = {
   ],
   styleResources: {
     scss: [
-      '@/assets/css/_variables.scss',
-      '@/assets/css/_reset.scss'
+      '@/assets/css/_variables.scss'
     ]
   },
   /*
