@@ -27,6 +27,8 @@ export default {
       bScroll: null,
       options: {
         scrollY: true,
+        click: true,
+        taps: true,
         scrollbar: {
           fade: true,
           interactive: true
