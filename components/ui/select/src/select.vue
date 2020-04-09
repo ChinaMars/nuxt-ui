@@ -23,11 +23,11 @@
           v-if="iScrollBar"
           :complete="domDon"
         >
-          <ul class="mv-option-wrap" ref="selectOptions">
+          <ul ref="selectOptions" class="mv-option-wrap">
             <slot></slot>
           </ul>
         </mv-scrollbar>
-        <ul v-else class="mv-option-wrap" ref="selectOptions">
+        <ul v-else ref="selectOptions" class="mv-option-wrap">
           <slot></slot>
         </ul>
       </div>
@@ -102,7 +102,7 @@ export default {
     },
     placeholder: {
       immediate: true,
-      handler: function (value) {
+      handler (value) {
         this.cachePlaceholder = value
         this.currentPlaceholder = value
       }

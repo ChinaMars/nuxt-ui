@@ -11,12 +11,12 @@
     </mv-button>
     <ul class="mv-pager">
       <li
-        :class="{'current': item.number === curPage}"
         v-for="(item, index) in pages"
         :key="index"
+        :class="{'current': item.number === curPage}"
         @click="onPagerClick(item)"
       >
-        <span v-if="item.number">{{item.number}}</span>
+        <span v-if="item.number">{{ item.number }}</span>
         <span v-if="item.omitted">{{ omittedPageText }}</span>
       </li>
     </ul>
@@ -77,19 +77,14 @@ export default {
       default: ''
     }
   },
-  data() {
-    return{
+  data () {
+    return {
       curPage: null
     }
   },
-  watch: {
-    curPage(newVal) {
-      this.$emit('current-change', newVal)
-    }
-  },
   computed: {
-    pages() {
-      let pagerItem = {}
+    pages () {
+      const pagerItem = {}
       const pageCount = this.pageCount
       const pageRange = this.pageRange
       const pageMargin = this.pageMargin
@@ -101,7 +96,7 @@ export default {
 
         pagerItem[index] = page
       }
-      const setBreakView = index => {
+      const setBreakView = (index) => {
         const breakView = {
           omitted: true
         }
@@ -109,7 +104,7 @@ export default {
         pagerItem[index] = breakView
       }
       if (pageCount <= pageRange) {
-        for (let i = 0;  i < pageCount; i++) {
+        for (let i = 0; i < pageCount; i++) {
           setPagerItem(i)
         }
       } else {
@@ -161,25 +156,30 @@ export default {
       }
       return pagerItem
     },
-    buttonClass() {
+    buttonClass () {
       return (text) => {
         return text !== '' ? 'pagination-button-text' : 'pagination-button-icon'
       }
     }
   },
-  created() {
+  watch: {
+    curPage (newVal) {
+      this.$emit('current-change', newVal)
+    }
+  },
+  created () {
     this.curPage = this.currentPage
   },
   methods: {
-    onPagerClick(data) {
-      if (data.omitted) return false
+    onPagerClick (data) {
+      if (data.omitted) { return false }
       this.curPage = data.number
     },
-    prevBtnClick() {
+    prevBtnClick () {
       this.curPage = this.curPage - 1
       this.$emit('prev-click', this.curPage)
     },
-    nextBtnClick() {
+    nextBtnClick () {
       this.curPage = this.curPage + 1
       this.$emit('next-click', this.curPage)
     }
@@ -249,6 +249,11 @@ export default {
       margin: 0 5px;
       padding: 2px;
       width: 30px;
+
+      &:hover {
+        background: #000;
+        color: #fff;
+      }
 
       &.current {
         background: #000;

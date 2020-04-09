@@ -1,18 +1,24 @@
 <template>
-  <div
-    v-show="visible"
-    class="mv-drawer"
+  <transition
+    name="mv-drawer-fade"
   >
     <div
-      :class="positionClass"
-      :style="{width: width}"
-      class="mv-drawer-container"
+      v-show="visible"
+      :style="{'z-index': zIndex}"
+      :class="{'open': visible}"
+      class="mv-drawer"
+      @click.self="handleWrapClick()"
     >
-      <div class="mv-drawer-content">
-        <slot></slot>
+      <div
+        :class="positionClass"
+        class="mv-drawer-container"
+      >
+        <div class="mv-drawer-content">
+          <slot></slot>
+        </div>
       </div>
     </div>
-  </div>
+  </transition>
 </template>
 
 <script>
@@ -25,19 +31,23 @@ export default {
       type: Boolean,
       default: false
     },
-    width: {
-      type: String,
-      default: 'auto'
-    },
     position: {
       type: String,
       default: ''
+    },
+    zIndex: {
+      type: Number,
+      default: 1001
+    },
+    closeByMask: {
+      type: Boolean,
+      default: true
     }
   },
   computed: {
     positionClass () {
       if (this.position) {
-        return `mv-popup-${this.position}`
+        return `mv-drawer-${this.position}`
       } else {
         return ''
       }
@@ -49,11 +59,20 @@ export default {
         this.createInstanceMask({
           show: true
         })
+      } else {
+        this.instanceMask.visible = false
       }
     }
   },
-  created () {
-
+  methods: {
+    handleClose () {
+      this.$emit('update:visible', false)
+    },
+    handleWrapClick () {
+      if (this.closeByMask) {
+        this.handleClose()
+      }
+    }
   }
 }
 </script>
@@ -68,11 +87,84 @@ export default {
     top: 0;
     width: 100%;
 
-    .mv-drawer-container {
-      left: 50%;
-      position: absolute;
-      top: 50%;
-      transform: translate(-50%, -50%);
+    &.open {
+      .mv-drawer-right {
+        animation: right-drawer-in 0.3s 1ms;
+      }
+    }
+
+    .mv-drawer-right {
+      animation: right-drawer-out 0.3s 1ms;
     }
   }
+
+  .mv-drawer-container {
+    background: #fff;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 30%;
+  }
+
+  .mv-drawer-content {
+    padding: 20px;
+  }
+
+  @keyframes mv-drawer-fade-in {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes mv-drawer-fade-out {
+    0% {
+      opacity: 1;
+    }
+
+    100% {
+      opacity: 0;
+    }
+  }
+
+  .mv-drawer-fade-enter-active {
+    animation: mv-drawer-fade-in 225ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+  }
+
+  .mv-drawer-fade-leave-active {
+    animation: mv-drawer-fade-out 225ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+  }
+
+  @mixin drawer-animation($direction) {
+    @keyframes #{$direction}-drawer-in {
+      0% {
+        @if $direction == right {
+          transform: translate(100%);
+        }
+      }
+
+      100% {
+        transform: translate(0);
+      }
+    }
+
+    @keyframes #{$direction}-drawer-out {
+      0% {
+        @if $direction == right {
+          transform: translate(0);
+        }
+      }
+
+      100% {
+        @if $direction == right {
+          transform: translate(100%);
+        }
+      }
+    }
+  }
+  @include drawer-animation(right)
 </style>

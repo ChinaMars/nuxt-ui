@@ -1,6 +1,6 @@
 import Vue from 'vue'
-import main from './main.vue'
 import { isServer } from '../../utils/util'
+import main from './main.vue'
 
 const ToastConstructor = Vue.extend(main)
 
