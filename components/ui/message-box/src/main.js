@@ -1,6 +1,6 @@
 import Vue from 'vue'
-import main from './main.vue'
 import { isServer } from '../../utils/util'
+import main from './main.vue'
 
 const MessageBoxConstructor = Vue.extend(main)
 
@@ -15,7 +15,7 @@ const MessageBox = (options = {}) => {
   instance.visible = true
   instance.callback = handleCallBack
   document.body.appendChild(instance.$el)
-  return new Promise((resolve,reject) => {
+  return new Promise((resolve, reject) => {
     PromiseAction = {
       resolve,
       reject

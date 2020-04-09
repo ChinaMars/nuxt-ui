@@ -4,8 +4,8 @@
       v-show="visible"
       :style="{'z-index': zIndex}"
       :class="positionClass"
-      @click.self="handleWrapClick()"
       class="mv-dialog-wrap"
+      @click.self="handleWrapClick()"
     >
       <div class="mv-dialog" :style="style">
         <div class="mv-dialog-header">
@@ -105,7 +105,7 @@ export default {
         this.$emit('closed')
       }
     },
-    handleWrapClick() {
+    handleWrapClick () {
       if (this.closeByMask) {
         this.handleClose()
       }

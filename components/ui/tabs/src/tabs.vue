@@ -20,20 +20,20 @@
 <script>
 export default {
   name: 'MvTabs',
-  data() {
+  data () {
     return {
       tabs: []
     }
   },
-  created() {
+  created () {
     this.tabs = this.$children
   },
-  mounted() {
+  mounted () {
 
   },
   methods: {
-    selectTab(selectedTab) {
-      this.tabs.forEach(tab => {
+    selectTab (selectedTab) {
+      this.tabs.forEach((tab) => {
         tab.isActive = (tab.name === selectedTab.name)
       })
       this.$emit('tabs-click', selectedTab)

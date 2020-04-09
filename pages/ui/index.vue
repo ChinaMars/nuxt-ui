@@ -4,8 +4,8 @@
     <div class="block">
       <h2>Loading 加载</h2>
       <mv-button
-        @click.native="loading"
         :type-style="button.typeStyle"
+        @click.native="loading"
       >
         加载
       </mv-button>
@@ -13,8 +13,8 @@
     <div class="block">
       <h2>Toast 提示框</h2>
       <mv-button
-        @click.native="toast"
         :type-style="button.typeStyle"
+        @click.native="toast"
       >
         提示框
       </mv-button>
@@ -24,7 +24,7 @@
       <div class="scroll-text">
         <mv-scrollbar :complete="scrollBar">
           <ul>
-            <li v-for="(item, index) in 50" :key="index">滚动内容{{item}}</li>
+            <li v-for="(item, index) in 50" :key="index">滚动内容{{ item }}</li>
           </ul>
         </mv-scrollbar>
       </div>
@@ -88,8 +88,8 @@
     <div class="block">
       <h2>Dialog 对话框</h2>
       <mv-button
-        @click.native="mvDialog"
         :type-style="button.typeStyle"
+        @click.native="mvDialog"
       >
         对话框
       </mv-button>
@@ -97,8 +97,8 @@
     <div class="block">
       <h2>Message Box 信息弹窗</h2>
       <mv-button
-        @click.native="mvMessageBox"
         :type-style="button.typeStyle"
+        @click.native="mvMessageBox"
       >
         信息弹窗
       </mv-button>
@@ -141,14 +141,15 @@
     <div class="block">
       <h2>抽屉</h2>
       <mv-button
-        @click.native="mvDrawer"
         :type-style="button.typeStyle"
+        @click.native="mvDrawer"
       >
         默认打开抽屉方向
       </mv-button>
     </div>
     <mv-drawer
       :visible.sync="drawer.visible"
+      :position="drawer.position"
     >
       内容
     </mv-drawer>
@@ -257,14 +258,15 @@ export default {
         }
       ],
       drawer: {
-        visible: false
+        visible: false,
+        position: 'right'
       }
     }
   },
   watch: {
     regionModel: {
       immediate: true,
-      handler: function (value) {
+      handler (value) {
         const allAddress = address.data
         this.cityModel = ''
         this.districtModel = ''
@@ -282,7 +284,7 @@ export default {
         }
       }
     },
-    cityModel(newVal) {
+    cityModel (newVal) {
       const allAddress = address.data
       this.districtModel = ''
       this.address.district.disabled = false
@@ -331,14 +333,14 @@ export default {
       }).then(() => {
         setTimeout(() => {
           alert('reslove')
-        },1000)
+        }, 1000)
       }).catch(() => {
         setTimeout(() => {
           alert('reject')
-        },1000)
+        }, 1000)
       })
     },
-    mvDrawer() {
+    mvDrawer () {
       this.drawer.visible = true
     },
     handleBeforeClose (callback) {
@@ -365,7 +367,7 @@ export default {
 
 <style lang="scss" scoped>
   .ui-guide {
-    padding: 50px 100px;
+    padding: 20px 60px;
 
     h1 {
       margin-bottom: 50px;

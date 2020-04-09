@@ -14,11 +14,6 @@
 import findCompontent from '../../utils/find-compontent'
 export default {
   name: 'MvOption',
-  data() {
-    return {
-      currentLabel: null
-    }
-  },
   props: {
     value: {
       type: [String, Number],
@@ -29,19 +24,24 @@ export default {
       default: null
     }
   },
+  data () {
+    return {
+      currentLabel: null
+    }
+  },
   inject: ['select'],
   computed: {
-    currentValue() {
+    currentValue () {
       return this.select.value
     },
-    selected() {
+    selected () {
       return this.checkedSelected(this.currentValue, this.value)
     }
   },
   watch: {
     value: {
       immediate: true,
-      handler: function (value) {
+      handler (value) {
         if (this.currentValue === value) {
           const getCompontent = findCompontent(this, 'MvSelect')
           getCompontent.$emit('handleOptionClick', this)

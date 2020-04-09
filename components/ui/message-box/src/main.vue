@@ -1,39 +1,39 @@
 <template>
   <transition name="mv-message-box-fade">
     <div
-    v-show="visible"
-    :style="{'z-index': zIndex}"
-    @click.self="handleWrapClick()"
-    class="mv-message-box-wrap"
-  >
-    <div class="mv-message-box">
-      <div class="mv-message-box-header">
-        <div class="mv-message-box-title">{{ title }}</div>
-        <div class="mv-message-box-close" @click="handleClose()">
-          <mv-icon name="mv-close"></mv-icon>
+      v-show="visible"
+      :style="{'z-index': zIndex}"
+      class="mv-message-box-wrap"
+      @click.self="handleWrapClick()"
+    >
+      <div class="mv-message-box">
+        <div class="mv-message-box-header">
+          <div class="mv-message-box-title">{{ title }}</div>
+          <div class="mv-message-box-close" @click="handleClose()">
+            <mv-icon name="mv-close"></mv-icon>
+          </div>
         </div>
-      </div>
-      <div class="mv-message-box-body">
-        {{ content }}
-      </div>
-      <div class="mv-message-box-footer">
-        <div class="mv-message-box-btns">
-          <mv-button
-            v-if="hideCancelButton"
-            @click.native="handleAction('cancel')"
-          >
-            {{ cancelButtonText }}
-          </mv-button>
-          <mv-button
-            type-style="primary"
-            @click.native="handleAction('confirm')"
-          >
-            {{ confirmButtonText }}
-          </mv-button>
+        <div class="mv-message-box-body">
+          {{ content }}
+        </div>
+        <div class="mv-message-box-footer">
+          <div class="mv-message-box-btns">
+            <mv-button
+              v-if="hideCancelButton"
+              @click.native="handleAction('cancel')"
+            >
+              {{ cancelButtonText }}
+            </mv-button>
+            <mv-button
+              type-style="primary"
+              @click.native="handleAction('confirm')"
+            >
+              {{ confirmButtonText }}
+            </mv-button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
   </transition>
 </template>
 
@@ -48,7 +48,7 @@ export default {
     [Button.name]: Button
   },
   mixins: [MaskMixin],
-  data() {
+  data () {
     return {
       visible: false,
       zIndex: 1001,
@@ -58,6 +58,11 @@ export default {
       confirmButtonText: '确定',
       closeByMask: true,
       type: 'alert'
+    }
+  },
+  computed: {
+    hideCancelButton () {
+      return this.type !== 'alert'
     }
   },
   watch: {
@@ -71,25 +76,20 @@ export default {
       }
     }
   },
-  computed: {
-    hideCancelButton() {
-      return this.type !== 'alert'
-    }
-  },
-  created() {
+  created () {
     console.log(this)
   },
   methods: {
-    handleAction(action) {
+    handleAction (action) {
       this.visible = false
       this.callback(action)
     },
-    handleWrapClick() {
+    handleWrapClick () {
       if (this.closeByMask) {
         this.visible = false
       }
     },
-    handleClose() {
+    handleClose () {
       this.visible = false
     }
   }

@@ -17,7 +17,7 @@ export default {
   watch: {
     show: {
       immediate: true,
-      handler: function (value) {
+      handler (value) {
         setTimeout(() => {
           this.visible = value
         })
