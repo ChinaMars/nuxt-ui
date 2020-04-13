@@ -46,6 +46,7 @@ export default {
   },
   computed: {
     positionClass () {
+      console.log(this.position)
       if (this.position) {
         return `mv-drawer-${this.position}`
       } else {
@@ -78,6 +79,8 @@ export default {
 </script>
 
 <style lang="scss">
+  $directions: right, left, top, bottom;
+
   .mv-drawer {
     bottom: 0;
     height: 100%;
@@ -86,29 +89,58 @@ export default {
     right: 0;
     top: 0;
     width: 100%;
-
-    &.open {
-      .mv-drawer-right {
-        animation: right-drawer-in 0.3s 1ms;
-      }
-    }
-
-    .mv-drawer-right {
-      animation: right-drawer-out 0.3s 1ms;
-    }
   }
 
   .mv-drawer-container {
     background: #fff;
     height: 100%;
     position: absolute;
-    right: 0;
+  }
+
+  .mv-drawer-left,
+  .mv-drawer-right {
+    bottom: 0;
     top: 0;
+  }
+
+  .mv-drawer-left {
+    left: 0;
     width: 30%;
+  }
+
+  .mv-drawer-right {
+    right: 0;
+    width: 30%;
+  }
+
+  .mv-drawer-top,
+  .mv-drawer-bottom {
+    left: 0;
+    right: 0;
+  }
+
+  .mv-drawer-top {
+    height: 30%;
+    top: 0;
+    width: 100%;
+  }
+
+  .mv-drawer-bottom {
+    bottom: 0;
+    height: 30%;
+    width: 100%;
   }
 
   .mv-drawer-content {
     padding: 20px;
+  }
+
+  .mv-drawer-fade-enter-active {
+    animation: mv-drawer-fade-in 225ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+  }
+
+  .mv-drawer-fade-leave-active {
+    animation: mv-drawer-fade-out 225ms cubic-bezier(0, 0, 0.2, 1) 0ms;
   }
 
   @keyframes mv-drawer-fade-in {
@@ -131,12 +163,18 @@ export default {
     }
   }
 
-  .mv-drawer-fade-enter-active {
-    animation: mv-drawer-fade-in 225ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+  @mixin drawer-in($directions) {
+    .mv-drawer.open {
+      .mv-drawer-#{$directions} {
+        animation: #{$directions}-drawer-in 0.3s 1ms;
+      }
+    }
   }
 
-  .mv-drawer-fade-leave-active {
-    animation: mv-drawer-fade-out 225ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+  @mixin drawer-out($directions) {
+    .mv-drawer-#{$directions} {
+      animation: #{$directions}-drawer-out 0.3s 1ms;
+    }
   }
 
   @mixin drawer-animation($direction) {
@@ -144,6 +182,15 @@ export default {
       0% {
         @if $direction == right {
           transform: translate(100%);
+        }
+        @if $direction == left {
+          transform: translate(-100%);
+        }
+        @if $direction == top {
+          transform: translate(0, -100%);
+        }
+        @if $direction == bottom {
+          transform: translate(0, 100%);
         }
       }
 
@@ -154,17 +201,32 @@ export default {
 
     @keyframes #{$direction}-drawer-out {
       0% {
-        @if $direction == right {
-          transform: translate(0);
-        }
+        transform: translate(0);
       }
 
       100% {
         @if $direction == right {
           transform: translate(100%);
         }
+        @if $direction == left {
+          transform: translate(-100%);
+        }
+        @if $direction == top {
+          transform: translate(0, -100%);
+        }
+        @if $direction == bottom {
+          transform: translate(0, 100%);
+        }
       }
     }
   }
-  @include drawer-animation(right)
+
+  @each $direction in $directions {
+    @include drawer-in($direction);
+    @include drawer-out($direction);
+  }
+  @include drawer-animation(right);
+  @include drawer-animation(left);
+  @include drawer-animation(top);
+  @include drawer-animation(bottom);
 </style>

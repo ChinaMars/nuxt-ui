@@ -5,6 +5,7 @@
       v-bind="$attrs"
       :type="type"
       :class="inputClass"
+      :disabled="disabled"
       class="mv-input-inner"
       @focus="handleFocus"
       @input="handleInput"
