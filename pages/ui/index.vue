@@ -139,12 +139,53 @@
       </mv-tabs>
     </div>
     <div class="block">
-      <h2>抽屉</h2>
+      <h2>Drawer 抽屉</h2>
+      <mv-button-group>
+        <mv-button
+          :type-style="button.typeStyle"
+          @click.native="mvDrawer('right')"
+        >
+          从右打开抽屉
+        </mv-button>
+        <mv-button
+          :type-style="button.typeStyle"
+          @click.native="mvDrawer('left')"
+        >
+          从左打开抽屉
+        </mv-button>
+        <mv-button
+          :type-style="button.typeStyle"
+          @click.native="mvDrawer('top')"
+        >
+          从上打开抽屉
+        </mv-button>
+        <mv-button
+          :type-style="button.typeStyle"
+          @click.native="mvDrawer('bottom')"
+        >
+          从下打开抽屉
+        </mv-button>
+      </mv-button-group>
+    </div>
+    <div class="block">
+      <h2>Countdown 倒计时 (目前只支持秒倒计时)</h2>
       <mv-button
         :type-style="button.typeStyle"
-        @click.native="mvDrawer"
+        :disabled="countdown.disabled"
+        @click.native="handleCaptcha"
       >
-        默认打开抽屉方向
+        <mv-countdown
+          v-if="countdown.counting"
+          ref="captcha"
+          :seconds="countdown.time"
+          @start="handleCaptchaStart"
+          @end="handleCaptchaEnd"
+        >
+          <template v-slot="slotProps">
+            {{ slotProps.timeData }}s
+          </template>
+        </mv-countdown>
+        <span v-if="!countdown.counting">{{ countdown.text }}</span>
       </mv-button>
     </div>
     <mv-drawer
@@ -193,7 +234,8 @@ import {
   Scrollbar,
   Pagination,
   Tabs,
-  Drawer
+  Drawer,
+  Countdown
 } from '@/components/ui/index'
 Vue.use(ButtonGroup)
 Vue.use(Button)
@@ -203,6 +245,7 @@ Vue.use(Scrollbar)
 Vue.use(Pagination)
 Vue.use(Tabs)
 Vue.use(Drawer)
+Vue.use(Countdown)
 export default {
   data () {
     return {
@@ -259,7 +302,13 @@ export default {
       ],
       drawer: {
         visible: false,
-        position: 'right'
+        position: 'bottom' // 默认不填右边打开 (right, left, top, bottom)
+      },
+      countdown: {
+        time: 60,
+        disabled: false,
+        counting: false,
+        text: '获取验证码'
       }
     }
   },
@@ -303,6 +352,8 @@ export default {
       Object.assign(this.address.region.options, allAddress.region[key])
     }
   },
+  mounted () {
+  },
   methods: {
     loading () {
       const loading = this.$loading({
@@ -340,8 +391,9 @@ export default {
         }, 1000)
       })
     },
-    mvDrawer () {
+    mvDrawer (position) {
       this.drawer.visible = true
+      this.drawer.position = position
     },
     handleBeforeClose (callback) {
       alert('dialog关闭前执行的事件')
@@ -360,6 +412,22 @@ export default {
     },
     handleTabsClick (tab) {
       alert(tab.label)
+    },
+    handleCaptcha () {
+      this.countdown.counting = true
+      this.$nextTick(() => {
+        this.countdown.disabled = true
+        this.$refs.captcha.start()
+      })
+    },
+    handleCaptchaStart() {
+      console.log('监听倒计时开始')
+    },
+    handleCaptchaEnd() {
+      console.log('监听倒计时结束')
+      this.countdown.counting = false
+      this.countdown.disabled = false
+      this.countdown.text = '重新获取验证码'
     }
   }
 }

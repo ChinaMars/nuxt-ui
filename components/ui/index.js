@@ -11,6 +11,7 @@ import Drawer from './drawer'
 import MessageBox from './message-box'
 import Pagination from './pagination'
 import Tabs from './tabs'
+import Countdown from './countdown'
 
 export {
   Loading,
@@ -25,5 +26,6 @@ export {
   Drawer,
   MessageBox,
   Pagination,
-  Tabs
+  Tabs,
+  Countdown
 }
