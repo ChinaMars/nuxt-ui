@@ -203,15 +203,15 @@ export default {
       &:disabled {
         span,
         span:hover {
-          color: #ccc;
+          color: $pagination-button-disabled-color;
         }
       }
 
       span {
-        color: #7f828b;
+        color: $pagination-button-color;
 
         &:hover {
-          color: #000;
+          color: $pagination-button-hover-color;
         }
       }
     }
@@ -220,17 +220,17 @@ export default {
       &:disabled {
         .icon,
         .icon:hover {
-          color: #ccc;
+          color: $pagination-button-disabled-color;
         }
       }
     }
 
     .icon {
-      color: #7f828b;
+      color: $pagination-button-color;
       font-size: 24px;
 
       &:hover {
-        color: #000;
+        color: $pagination-button-hover-color;
       }
     }
   }
@@ -241,7 +241,7 @@ export default {
 
     li {
       align-items: center;
-      background: #f4f4f5;
+      background: $pagination-page-background-color;
       cursor: pointer;
       display: flex;
       height: 30px;
@@ -251,13 +251,13 @@ export default {
       width: 30px;
 
       &:hover {
-        background: #000;
-        color: #fff;
+        background: $pagination-page-hover-background-color;
+        color: $pagination-page-hover-color;
       }
 
       &.current {
-        background: #000;
-        color: #fff;
+        background: $pagination-page-actived-background-color;
+        color: $pagination-page-actived-color;
       }
     }
   }

@@ -48,7 +48,7 @@ export default {
     position: relative;
 
     &::after {
-      background: #000;
+      background: $tabs-bar-line-color;
       bottom: 0;
       content: '';
       height: 2px;
@@ -62,10 +62,10 @@ export default {
     }
 
     li {
-      color: #7f828b;
+      color: $tabs-bar-font-color;
       cursor: pointer;
-      font-size: 16px;
-      font-weight: 500;
+      font-size: $tabs-bar-font-size;
+      font-weight: $font-weight-default;
       height: 40px;
       line-height: 40px;
       padding: 0 20px;
@@ -75,7 +75,7 @@ export default {
       }
 
       &.active {
-        color: #000;
+        color: $tabs-bar-actived-color;
       }
     }
   }

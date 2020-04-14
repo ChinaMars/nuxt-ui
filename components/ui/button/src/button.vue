@@ -44,21 +44,19 @@ export default {
 
 <style lang="scss">
   .mv-button {
-    background: #fff;
-    border: 1px solid #dcdfe6;
-    border-radius: 4px;
+    background: $button-default-background-color;
+    border: 1px solid $button-default-border-color;
+    border-radius: $border-radius-default;
     box-sizing: border-box;
-    color: #606266;
+    color: $button-default-font-color;
     cursor: pointer;
     display: inline-block;
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 1;
-    margin: 0;
+    font-size: $button-font-size;
+    font-weight: $font-weight-default;
     outline: none;
     padding: 12px 20px;
     text-align: center;
-    transition: 0.1s;
+    transition: 0.3s;
     user-select: none;
     white-space: nowrap;
 
@@ -68,18 +66,18 @@ export default {
   }
 
   .mv-button:hover {
-    background-color: #000;
-    color: #fff;
+    background-color: $button-primary-background-color;
+    color: $button-primary-font-color;
   }
 
   .mv-button-primary {
-    background-color: #000;
-    border-color: #000;
-    color: #fff;
+    background-color: $button-primary-background-color;
+    border-color: $button-primary-border-color;
+    color: $button-primary-font-color;
   }
 
   .mv-button-primary:hover {
-    background-color: #4b4b4b;
-    color: #fff;
+    background-color: $color-primary-light-3;
+    color: $button-primary-font-color;
   }
 </style>

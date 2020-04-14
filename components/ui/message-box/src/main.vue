@@ -110,7 +110,7 @@ export default {
   }
 
   .mv-message-box {
-    background: #fff;
+    background: $message-box-background-color;
     min-width: 320px;
     padding: 20px;
   }
@@ -130,10 +130,11 @@ export default {
   }
 
   .mv-message-box-title {
-    font-size: 18px;
+    font-size: $message-box-title-font-size;
   }
 
   .mv-message-box-body {
+    color: $font-color-default;
     margin: 20px 0;
   }
 

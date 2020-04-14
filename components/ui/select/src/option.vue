@@ -67,18 +67,19 @@ export default {
 <style lang="scss">
   .mv-option-wrap {
     .mv-option {
+      color: $font-color-default;
       cursor: pointer;
-      font-size: 14px;
+      font-size: $select-font-size-default;
       height: 34px;
       line-height: 34px;
       padding: 0 20px;
 
       &.selected {
-        background: #f5f7fa;
+        background: $select-option-background-color;
       }
 
       &:hover {
-        background: #f5f7fa;
+        background: $select-option-background-color;
       }
     }
   }
