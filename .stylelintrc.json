@@ -7,6 +7,9 @@
     "selector-no-qualifying-type": [ true, {
       "ignore": [ "attribute", "class", "id" ]
     }],
+    "selector-no-vendor-prefix": [true, {
+      "ignoreSelectors": ["::-webkit-input-placeholder", "/-moz-.*/", ":-ms-input-placeholder"]
+    }],
     "max-nesting-depth": [
       5,{
         "ignore": ["blockless-at-rules"]

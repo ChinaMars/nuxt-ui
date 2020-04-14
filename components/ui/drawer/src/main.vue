@@ -92,7 +92,7 @@ export default {
   }
 
   .mv-drawer-container {
-    background: #fff;
+    background: $drawer-background-color;
     height: 100%;
     position: absolute;
   }

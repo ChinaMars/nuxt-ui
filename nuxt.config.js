@@ -24,6 +24,7 @@ module.exports = {
   */
   css: [
     'normalize.css',
+    '@/assets/css/ui/ui.scss',
     '@/assets/css/global.scss'
     // 'element-ui/lib/theme-chalk/index.css'
   ],
@@ -45,6 +46,8 @@ module.exports = {
   ],
   styleResources: {
     scss: [
+      '@/assets/css/ui/mixins/_mixins.scss',
+      '@/assets/css/ui/common/_var.scss',
       '@/assets/css/_variables.scss'
     ]
   },

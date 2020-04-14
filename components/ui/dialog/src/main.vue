@@ -134,7 +134,7 @@ export default {
     }
 
     .mv-dialog {
-      background: #fff;
+      background: $dialog-background-color;
       padding: 20px;
     }
 
@@ -144,7 +144,8 @@ export default {
     }
 
     .mv-dialog-title {
-      font-size: 18px;
+      color: $color-black;
+      font-size: $dialog-title-font-size;
     }
 
     .mv-dialog-close {
@@ -156,6 +157,7 @@ export default {
     }
 
     .mv-dialog-body {
+      color: $font-color-default;
       padding: 20px 0;
     }
 

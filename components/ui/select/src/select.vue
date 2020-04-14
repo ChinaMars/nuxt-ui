@@ -150,6 +150,7 @@ export default {
     .mv-input-inner {
       cursor: pointer;
       padding-right: 30px;
+      @include placeholder-color($font-color-default);
     }
 
     .mv-select-input {

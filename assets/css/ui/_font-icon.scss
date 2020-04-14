@@ -3,11 +3,11 @@
   font-family: 'mvue-icons';
   font-style: normal;
   font-weight: normal;
-  src: url('../fonts/mvue-icons.eot?c9azy4');
-  src:  url('../fonts/mvue-icons.eot?c9azy4#iefix') format('embedded-opentype'),
-    url('../fonts/mvue-icons.ttf?c9azy4') format('truetype'),
-    url('../fonts/mvue-icons.woff?c9azy4') format('woff'),
-    url('../fonts/mvue-icons.svg?c9azy4#mvue-icons') format('svg');
+  src: url('#{$font-icon-path}/mvue-icons.eot?c9azy4');
+  src:  url('#{$font-icon-path}/mvue-icons.eot?c9azy4#iefix') format('embedded-opentype'),
+    url('#{$font-icon-path}/mvue-icons.ttf?c9azy4') format('truetype'),
+    url('#{$font-icon-path}/mvue-icons.woff?c9azy4') format('woff'),
+    url('#{$font-icon-path}/mvue-icons.svg?c9azy4#mvue-icons') format('svg');
 }
 
 [class^='icon-'],

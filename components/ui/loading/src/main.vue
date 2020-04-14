@@ -54,13 +54,13 @@ export default {
 
     .icon-mv-loading {
       animation: rotating 2s linear infinite;
-      color: #fff;
+      color: $loading-font-color-default;
       font-size: 20px;
     }
   }
 
   .mv-loading-text {
-    color: #fff;
+    color: $loading-font-color-default;
   }
 
   .mv-fade-enter,

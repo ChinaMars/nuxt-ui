@@ -40,9 +40,9 @@ export default {
   }
 
   .mv-toast-content {
-    background: #000;
+    background: $toast-background-color-default;
     border-radius: 10px;
-    color: #fff;
+    color: $toast-font-color-default;
     padding: 20px;
   }
 
