@@ -24,7 +24,7 @@ module.exports = {
   */
   css: [
     'normalize.css',
-    '@/assets/css/ui/ui.scss',
+    '@/assets/css/ui/index.scss',
     '@/assets/css/global.scss'
     // 'element-ui/lib/theme-chalk/index.css'
   ],
