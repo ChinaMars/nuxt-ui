@@ -1,39 +1,23 @@
 <template>
-  <div class="container">
-    <div>
-      <logo />
-      <h1 class="title">
-        nuxt-text
-      </h1>
-      <h2 class="subtitle">
-        nuxt text
-      </h2>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
-    </div>
+  <div class="home-container">
+    首页内容
+    {{ homeContent }}
   </div>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
+import { homeApi } from '~/api'
 
 export default {
-  components: {
-    Logo
+  async asyncData({ $axios }) {
+    const res = await $axios.$get(homeApi.GET_CONTENT)
+    console.log(res)
+    return {
+      homeContent: res.data.content
+    }
+  },
+  async mounted() {
+
   }
 }
 </script>

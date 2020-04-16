@@ -1,4 +1,6 @@
+import apiConfig from './config/api.config'
 const StyleLintPlugin = require('stylelint-webpack-plugin')
+
 module.exports = {
   mode: 'universal',
   /*
@@ -33,6 +35,7 @@ module.exports = {
   */
   plugins: [
     // '@/plugins/element-ui'
+    '~/plugins/axios'
   ],
   /*
   ** Nuxt.js dev-modules
@@ -42,8 +45,17 @@ module.exports = {
   ** Nuxt.js modules
   */
   modules: [
-    '@nuxtjs/style-resources'
+    '@nuxtjs/style-resources',
+    '@nuxtjs/axios'
   ],
+  axios: {
+    proxy: true
+  },
+  proxy: {
+    '/rest': {
+      target: `${apiConfig.FE}`
+    }
+  },
   styleResources: {
     scss: [
       '@/assets/css/ui/mixins/_mixins.scss',
@@ -55,7 +67,7 @@ module.exports = {
   ** Build configuration
   */
   build: {
-    transpile: [/^element-ui/],
+    // transpile: [/^element-ui/],
     postcss: {
       plugins: {
         autoprefixer: {
