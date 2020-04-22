@@ -21,4 +21,6 @@ $ npm run generate
 
 # 页面查看以本地为例：http://localhost:3000/ui
 
+# 操作演试视频地址：https://www.loom.com/share/41f7dddb38344f27b40a458ff225980a
+
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
