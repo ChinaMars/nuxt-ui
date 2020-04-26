@@ -227,6 +227,9 @@
 import Vue from 'vue'
 import address from '@/assets/json/address'
 import {
+  Loading,
+  Toast,
+  MessageBox,
   Button,
   ButtonGroup,
   Dialog,
@@ -237,6 +240,9 @@ import {
   Drawer,
   Countdown
 } from '@/components/ui/index'
+Vue.use(Loading)
+Vue.use(Toast)
+Vue.use(MessageBox)
 Vue.use(ButtonGroup)
 Vue.use(Button)
 Vue.use(Dialog)

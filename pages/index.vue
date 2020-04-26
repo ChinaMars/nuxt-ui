@@ -1,7 +1,6 @@
 <template>
   <div class="home-container">
     首页内容
-    {{ homeContent }}
   </div>
 </template>
 
@@ -9,15 +8,12 @@
 import { homeApi } from '~/api'
 
 export default {
+  // middleware: 'auth',
   async asyncData({ $axios }) {
     const res = await $axios.$get(homeApi.GET_CONTENT)
-    console.log(res)
     return {
       homeContent: res.data.content
     }
-  },
-  async mounted() {
-
   }
 }
 </script>

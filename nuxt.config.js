@@ -60,7 +60,8 @@ module.exports = {
     scss: [
       '@/assets/css/ui/mixins/_mixins.scss',
       '@/assets/css/ui/common/_var.scss',
-      '@/assets/css/_variables.scss'
+      '@/assets/css/mixins/_mixins.scss',
+      '@/assets/css/common/_variables.scss'
     ]
   },
   /*

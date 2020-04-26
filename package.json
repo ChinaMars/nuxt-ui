@@ -18,8 +18,8 @@
     "cross-env": "^5.2.0",
     "element-ui": "^2.4.11",
     "express": "^4.16.4",
-    "mobile-device-detect": "^0.3.3",
     "nuxt": "^2.0.0",
+    "nuxtend": "^0.2.6",
     "stylelint-config-sass-guidelines": "^7.0.0"
   },
   "devDependencies": {

@@ -10,6 +10,7 @@
     "selector-no-vendor-prefix": [true, {
       "ignoreSelectors": ["::-webkit-input-placeholder", "/-moz-.*/", ":-ms-input-placeholder"]
     }],
+    "selector-max-compound-selectors": [6], // https://stylelint.io/user-guide/rules/selector-max-compound-selectors#options
     "max-nesting-depth": [
       5,{
         "ignore": ["blockless-at-rules"]
